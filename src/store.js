@@ -7,7 +7,10 @@ Vue.use(Vuex)
 var state = {
   articles: '',
   categories: '',
-  tags: ''
+  tags: '',
+  loading: true,
+  windowWidth: 0,
+  windowHeight: 0
 }
 
 var mutations = {
@@ -19,6 +22,16 @@ var mutations = {
   },
   setTags: (state, tags) => {
     state.tags = tags
+  },
+  startLoading: state => {
+    state.loading = true
+  },
+  finishLoading: state => {
+    state.loading = false
+  },
+  setWindowSize: (state, size) => {
+    state.windowHeight = size.height
+    state.windowWidth = size.width
   }
 }
 

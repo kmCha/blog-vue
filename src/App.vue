@@ -28,6 +28,23 @@ export default {
       let size = windowWidth / defaultWidth * defaultSize
       document.documentElement.style.fontSize = size + 'px'
     }
+    // 设置全局window尺寸
+    store.commit('setWindowSize', {
+      height: window.innerHeight,
+      width: window.innerWidth
+    })
+    if (!store.state.articles || !store.state.categories || !store.state.tags) {
+      store.commit('startLoading')
+      return Promise.all([
+        store.dispatch('getArticles'),
+        store.dispatch('getCategories'),
+        store.dispatch('getTags')
+      ]).then(() => {
+        store.commit('finishLoading')
+      }).catch(res => {
+        console.log('提示网络问题')
+      })
+    }
   }
 }
 </script>

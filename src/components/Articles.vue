@@ -1,22 +1,19 @@
 <template>
-  <div class="articles container">
+  <loader></loader>
+  <div class="articles container" v-if="!loading">
     <div class="page-title">
       <h1>全部文章</h1>
     </div>
     <div v-for="article in articles">
       <article-list-item :article="article" :key="$key"></article-list-item>
-      <!-- <a class="title-wrapper" v-link="{ path: '/articles/' + $key }">
-        <div class="title">
-          <span>{{article.title}}</span>
-        </div>
-        <span class="date">{{article.date.substr(0, 10)}}</span>
-      </a> -->
     </div>
   </div>
 </template>
 
 <script>
 import ArticleListItem from './ArticleListItem.vue'
+import Loader from './Loader.vue'
+import { loadingMixin } from '../mixin'
 
 export default {
   data () {
@@ -35,15 +32,10 @@ export default {
     }
   },
   components: {
-    ArticleListItem
+    ArticleListItem,
+    Loader
   },
-  route: {
-    // data ({next}) {
-    //   return this.$store.dispatch('getArticles').catch(res => {
-    //     console.log('提示网络问题')
-    //   })
-    // }
-  }
+  mixins: [loadingMixin]
 }
 </script>
 
