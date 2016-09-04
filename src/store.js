@@ -10,7 +10,8 @@ var state = {
   tags: '',
   loading: true,
   windowWidth: 0,
-  windowHeight: 0
+  windowHeight: 0,
+  headerFixed: false
 }
 
 var mutations = {
@@ -32,6 +33,12 @@ var mutations = {
   setWindowSize: (state, size) => {
     state.windowHeight = size.height
     state.windowWidth = size.width
+  },
+  fixHeader: (state) => {
+    state.headerFixed = true
+  },
+  unfixHeader: (state) => {
+    state.headerFixed = false
   }
 }
 

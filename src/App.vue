@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img-header></img-header>
     <navigator></navigator>
     <router-view></router-view>
   </div>
@@ -7,11 +8,13 @@
 
 <script>
 import Navigator from './components/Navigator'
+import ImgHeader from './components/ImgHeader'
 import store from './store'
 
 export default {
   components: {
-    Navigator
+    Navigator,
+    ImgHeader
   },
   replace: false,
   store: store,
@@ -33,6 +36,7 @@ export default {
       height: window.innerHeight,
       width: window.innerWidth
     })
+    // 获取articles、tags、categories
     if (!store.state.articles || !store.state.categories || !store.state.tags) {
       store.commit('startLoading')
       return Promise.all([
@@ -61,7 +65,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 50px;
+  // padding-top: 50px;
+  margin: 0;
   .container {
     padding: 2rem 20rem;
     @media (max-width: 1140px) {
@@ -82,5 +87,14 @@ body {
     text-align:justify;
   }
 }
+.fade-transition {
+  transition: all .3s ease;
+  opacity: 1;
+}
 
+/* .expand-enter 定义进入的开始状态 */
+/* .expand-leave 定义离开的结束状态 */
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
 </style>
