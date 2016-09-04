@@ -7,6 +7,13 @@
     <div v-for="article in articles">
       <article-list-item :article="article" :key="$key"></article-list-item>
     </div>
+    <div class="page-selector">
+      <div class="page-selector-wrapper">
+        <div class="page-selector-item" @click="prePage">《</div>
+        <div v-for="n in numOfPages" class="page-selector-item {{n===onPage-1 ? 'active':''}}" @click="setPage">{{n + 1}}</div>
+        <div class="page-selector-item" @click="nextPage">》</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,17 +25,40 @@ import { loadingMixin } from '../mixin'
 export default {
   data () {
     return {
-      msg: 'Hello World!'
+      numsPerPage: 5,
+      onPage: 1
     }
   },
   computed: {
     articles () {
-      return this.$store.state.articles
+      let articles = this.$store.state.articles
+      let articlesToShow = {}
+      let count = 0
+      for (let key in articles) {
+        if (count < this.onPage * this.numsPerPage && count >= (this.onPage - 1) * this.numsPerPage) {
+          articlesToShow[key] = articles[key]
+        }
+        count++
+      }
+      return articlesToShow
+    },
+    numOfPages () {
+      return Math.ceil(this.$store.getters.articlesLength / this.numsPerPage)
     }
   },
   methods: {
-    inc () {
-      this.$store.commit('inc')
+    setPage (e) {
+      this.onPage = Number(e.target.innerHTML)
+    },
+    prePage () {
+      if (this.onPage > 1) {
+        this.onPage--
+      }
+    },
+    nextPage () {
+      if (this.onPage < this.numOfPages) {
+        this.onPage++
+      }
     }
   },
   components: {
@@ -101,6 +131,26 @@ export default {
       }
       .date {
         right: -5%;
+      }
+    }
+  }
+  .page-selector {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .page-selector-wrapper {
+      border: 2px #0dc7e3 solid;
+      border-radius: 10px;
+      .page-selector-item {
+        display: inline-block;
+        padding: 5px;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: .2s color linear;
+        &.active {
+          color: #0dc7e3;
+        }
       }
     }
   }

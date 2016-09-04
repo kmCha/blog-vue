@@ -69,7 +69,14 @@ var actions = {
 }
 
 var getters = {
-  count: state => state.count
+  count: state => state.count,
+  articlesLength: state => {
+    let count = 0
+    for (let key in state.articles) {
+      if (key) count++
+    }
+    return count
+  }
 }
 
 export default new Vuex.Store({
