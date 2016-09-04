@@ -11,7 +11,8 @@ var state = {
   loading: true,
   windowWidth: 0,
   windowHeight: 0,
-  headerFixed: false
+  headerFixed: false,
+  onPage: 1
 }
 
 var mutations = {
@@ -39,6 +40,9 @@ var mutations = {
   },
   unfixHeader: (state) => {
     state.headerFixed = false
+  },
+  setPage: (state, page) => {
+    state.onPage = page
   }
 }
 

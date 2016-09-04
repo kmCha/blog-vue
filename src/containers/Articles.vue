@@ -66,6 +66,12 @@ export default {
       }
     }
   },
+  ready () {
+    this.onPage = this.$store.state.onPage
+  },
+  beforeDestroy () {
+    this.$store.commit('setPage', this.onPage)
+  },
   components: {
     ArticleListItem,
     Loader
