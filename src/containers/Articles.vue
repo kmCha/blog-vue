@@ -2,7 +2,7 @@
   <loader></loader>
   <div class="articles container" v-if="!loading">
     <div class="page-title">
-      <h1>全部文章</h1>
+      <h1>第{{onPage}}页文章</h1>
     </div>
     <div v-for="article in articles">
       <article-list-item :article="article" :key="$key"></article-list-item>
@@ -27,6 +27,11 @@ export default {
     return {
       numsPerPage: 5,
       onPage: 1
+    }
+  },
+  watch: {
+    'onPage' () {
+      document.body.scrollTop = this.$store.state.windowHeight
     }
   },
   computed: {
