@@ -35,6 +35,7 @@ export default {
     }
   },
   attached () {
+    // 循环查询直到能访问到DOM，再加上代码高亮和图片居中
     const check = () => {
       if (document.querySelectorAll('pre code').length) {
         // 代码高亮
@@ -47,6 +48,8 @@ export default {
         imgs.forEach(img => {
           img.classList.add('center')
         })
+        // 回到顶部
+        document.body.scrollTop = this.$store.state.windowHeight
       } else {
         window.setTimeout(() => {
           check()
