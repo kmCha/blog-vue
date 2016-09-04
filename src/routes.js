@@ -25,3 +25,6 @@ export default {
     component: Category
   }
 }
+export const redirect = {
+  '*': '/articles'
+}
