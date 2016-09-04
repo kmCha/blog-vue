@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import ArticleListItem from './ArticleListItem.vue'
-import Loader from './Loader.vue'
+import ArticleListItem from '../components/ArticleListItem.vue'
+import Loader from '../components/Loader.vue'
 import { loadingMixin } from '../mixin'
 
 export default {

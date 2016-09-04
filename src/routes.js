@@ -1,8 +1,8 @@
-import Articles from './components/Articles'
-import Categories from './components/Categories'
+import Articles from './containers/Articles'
+import Categories from './containers/Categories'
 import Category from './components/Category'
-import Achieves from './components/Achieves'
-import Tags from './components/Tags'
+import Achieves from './containers/Achieves'
+import Tags from './containers/Tags'
 import Article from './components/Article'
 
 export default {
