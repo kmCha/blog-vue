@@ -62,22 +62,25 @@ body {
   align-items: center;
   justify-content: center;
   padding-top: 50px;
-}
-.container {
-  padding: 2rem 20rem;
-  @media (max-width: 1140px) {
-    max-width: calc(1140px - 40rem);
-    padding: 2rem 0;
-    margin: 0 auto;
+  .container {
+    padding: 2rem 20rem;
+    @media (max-width: 1140px) {
+      max-width: calc(1140px - 40rem);
+      padding: 2rem 0;
+      margin: 0 auto;
+    }
+  }
+  #app {
+    color: #444;
+    width: 100%;
+  }
+  a {
+    color: #0dc7e3;
+    text-decoration: none;
+  }
+  p {
+    text-align:justify;
   }
 }
-#app {
-  color: #444;
-  width: 100%;
-}
 
-a {
-  color: #0dc7e3;
-  text-decoration: none;
-}
 </style>
