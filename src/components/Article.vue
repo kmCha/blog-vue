@@ -1,5 +1,6 @@
 <template>
-  <div class="article container" v-if="!$loadingRouteData">
+  <loader></loader>
+  <div class="article container" v-if="!loading">
     <div class="title"><h1>{{ article.title }}</h1></div>
     <div class="body">
       {{{ article.body }}}
@@ -8,6 +9,9 @@
 </template>
 
 <script>
+import Loader from '../components/Loader.vue'
+import { loadingMixin } from '../mixin'
+
 export default {
   data () {
     return {
@@ -16,7 +20,6 @@ export default {
   },
   computed: {
     article () {
-      console.log('return article')
       return this.$store.state.articles[this.articleKey]
     }
   },
@@ -29,29 +32,33 @@ export default {
     data ({next, to}) {
       this.articleKey = to.params.key
       next()
-    //   if (!this.$store.state.articles) {
-    //     return this.$store.dispatch('getArticles').catch(res => {
-    //       console.log('提示网络问题')
-    //     })
-    //   } else {
-    //     next()
-    //   }
     }
   },
   attached () {
-    this.$nextTick(() => {
-      // 代码高亮
-      let codeBlocks = document.querySelectorAll('pre code')
-      codeBlocks.forEach(block => {
-        window.hljs.highlightBlock(block)
-      })
-      // 图片居中
-      let imgs = document.querySelectorAll('p img')
-      imgs.forEach(img => {
-        img.classList.add('center')
-      })
-    })
-  }
+    const check = () => {
+      if (document.querySelectorAll('pre code').length) {
+        // 代码高亮
+        let codeBlocks = document.querySelectorAll('pre code')
+        codeBlocks.forEach(block => {
+          window.hljs.highlightBlock(block)
+        })
+        // 图片居中
+        let imgs = document.querySelectorAll('p img')
+        imgs.forEach(img => {
+          img.classList.add('center')
+        })
+      } else {
+        window.setTimeout(() => {
+          check()
+        }, 50)
+      }
+    }
+    check()
+  },
+  components: {
+    Loader
+  },
+  mixins: [loadingMixin]
 }
 </script>
 
