@@ -1,12 +1,17 @@
 <template>
-  <div class="categories" v-if="!$loadingRouteData">
-    <div v-for="category in categories">
+  <loader></loader>
+  <div class="categories" v-if="!loading">
+    <h1>敬请期待...</h1>
+    <!-- <div v-for="category in categories">
       <a v-link="{ path: '/categories/' + $key }">{{$key}}({{category.length || '1'}})</a>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+import Loader from '../components/Loader.vue'
+import { loadingMixin } from '../mixin'
+
 export default {
   data () {
     return {
@@ -23,19 +28,16 @@ export default {
       this.$store.commit('inc')
     }
   },
-  route: {
-    // data ({next}) {
-    //   return this.$store.dispatch('getCategories').catch(res => {
-    //     console.log('提示网络问题')
-    //   })
-    // }
-  }
+  components: {
+    Loader
+  },
+  mixins: [loadingMixin]
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1 {
-  color: #42b983;
+<style lang="scss" scoped>
+.categories {
+  text-align: center;
 }
 </style>
