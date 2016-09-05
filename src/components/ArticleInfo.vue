@@ -1,8 +1,8 @@
 <template>
   <div class="article-info">
-    <span>发布于 {{date}}</span>
-    <span>分类于 {{category}}</span>
-    <span class="ds-thread-count" data-thread-key="{{key}}" data-count-type="comments">暂无评论</span>
+    <span><i class="iconfont icon-shijian5"></i>{{date}}</span>
+    <span><i class="iconfont icon-liebiao3"></i>{{category}}</span>
+    <i class="iconfont icon-pinglun"></i><span class="ds-thread-count" data-thread-key="{{key}}" data-count-type="comments">暂无评论</span>
   </div>
 </template>
 
@@ -21,11 +21,15 @@
       display: inline-block;
       padding-left: 1px;
       padding-right: 5px;
-      border-right: 2px #ef70bb solid;
-      color: #0dc7e3;
+      // border-right: 2px #ef70bb solid;
+      color: #555;
+      margin-right: 10px;
       &:last-child {
         border-right: none;
       }
+    }
+    .iconfont {
+      margin-right: 5px;
     }
   }
 </style>

@@ -51,11 +51,13 @@ export default {
   position: relative;
   width: 100%;
   overflow: hidden;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+  border-bottom: 4px #555 dashed;
   .article-list-title {
     text-align: center;
     a {
-      color: #0dc7e3;
+      text-decoration: none;
     }
   }
   .article-list-body {

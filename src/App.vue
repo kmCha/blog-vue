@@ -56,7 +56,9 @@ export default {
 <style lang="scss">
 $primary-color: #0dc7e3;
 $secondary-color: #ef70bb;
-$font-color: #444;
+$font-color: #555;
+$title-color: #444;
+$secondary-title-color: #454545;
 html {
   font-size: 16px;
   font-family: "Arial","LiHei Pro Medium","Microsoft YaHei","黑体","宋体",sans-serif;
@@ -76,12 +78,15 @@ body {
     }
   }
   #app {
-    color: #444;
+    color: $font-color;
     width: 100%;
   }
   a {
-    color: #0dc7e3;
-    text-decoration: none;
+    color: $secondary-title-color;
+    &:hover {
+      color: $primary-color;
+      text-decoration: none;
+    }
   }
   p {
     text-align:justify;

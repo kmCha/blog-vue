@@ -24,23 +24,18 @@ export default {
 <style lang="scss">
 .article-tag {
   position: relative;
+  border-radius: 4px;
   display: inline-block;
-  height: 20px;
-  padding: .2rem .5rem .2rem 1rem;
-  margin: 0 0.2rem;
-  color: #fff;
-  clip-path: polygon(0 50%, 10px 0, 100% 0, 100% 100%, 10px 100%);
+  font-weight: 600;
+  font-size: 12px;
+  margin-right: 5px;
+  padding: 1px 5px;
+  text-transform: uppercase;
   line-height: 20px;
-  &::after {
-    content: '';
-    display: block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: #fff;
-    position: absolute;
-    top: calc(50% - 3px);
-    left: 4px;
+  color: #fff;
+  text-decoration: none;
+  &:hover {
+    color: #fff;
   }
 }
 </style>

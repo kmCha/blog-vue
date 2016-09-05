@@ -51,6 +51,7 @@ export default {
       border: 1px #fff solid;
       border-radius: 0.5rem;
       margin: 20px 10px;
+      text-decoration: none;
       &:nth-child(1) {
         color: #dcc6a1;
         border-color: #dcc6a1;

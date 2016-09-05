@@ -52,7 +52,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #0dc7e3;
+  background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
   .link-wrapper {
     overflow: hidden;
@@ -62,11 +62,10 @@ export default {
       height: 30px;
       line-height: 30px;
       transition: 0.2s ease all;
-      color: #fff;
+      color: #2b4241;
+      text-decoration: none;
       &:hover {
-        background-color: #ef70bb;
-        padding: 0.5rem 2.2rem;
-        // transform: scale(1.5);
+        color: #0dc7e3;
       }
     }
   }

@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     article () {
-      return this.$store.state.articles[this.articleKey] || {}
+      return this.$store.state.articles[this.articleKey] || {date: ''}
     }
   },
   methods: {
@@ -82,12 +82,12 @@ h1 {
     text-align: center;
     margin-bottom: 5rem;
     h1 {
-      color: #ef70bb;
+      color: #444;
     }
   }
   .body {
     h1,h2,h3,h4,h5,h6 {
-      color: #0dc7e3;
+      color: #454545;
     }
     img {
       max-width: 100%;
@@ -97,23 +97,34 @@ h1 {
       margin: 0 auto;
     }
     p > code {
-      background-color: #8ff0ff;
-      color: #000;
-      display: inline-block;
-      border-radius: 0.2rem;
-      padding: 0 0.3rem;
-      line-height: 30px;
+      background-color: #f2f2f2;
+      border: 1px solid #dedede;
+      border-radius: 2px;
+      font: .8em Monaco,monospace;
+      padding: 1px 4px;
     }
     a {
-      color: #0dc7e3;
+      color: #454545;
       text-decoration: underline;
       padding: 0 0.3rem;
+      &:hover {
+        color: #0dc7e3;
+      }
     }
     strong {
-      color: #0dc7e3;
+      color: #454545;
     }
     p {
       line-height: 40px;
+    }
+    pre > code {
+      border-radius: 10px;
+    }
+    blockquote {
+      background: #E5E5E5;
+      border-left: 10px solid #CCCBCB;
+      margin-bottom: 20px;
+      padding: 10px 6px;
     }
   }
 }

@@ -101,59 +101,11 @@ export default {
   // flex-direction: column;
   .page-title {
     text-align: center;
+    border-bottom: 4px #555 dashed;
+    margin-bottom: 20px;
     h1 {
       color: #444;
       margin-bottom: 50px;
-    }
-  }
-  .title-wrapper {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    box-sizing: border-box;
-    border: #0dc7e3 2px solid;
-    border-radius: 50px;
-    display: block;
-    // padding-left: 1rem;
-    line-height: 50px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    transition: .2s linear all;
-    .title {
-      width: 85%;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      text-align: center;
-      will-change: transform;
-      transition: .2s linear all;
-      span {
-        white-space: nowrap;
-        color: #ef70bb;
-      }
-    }
-    .date {
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: -2;
-      // padding: 0 1rem;
-      width: 15%;
-      text-align: center;
-      color: #fff;
-      background-color: #0dc7e3;
-      transition: .2s linear all;
-    }
-    &:hover {
-      background-color: #0dc7e3;
-      .title {
-        transform: translateX(7.5%);
-        span {
-          color: #fff;
-        }
-      }
-      .date {
-        right: -5%;
-      }
     }
   }
   .page-selector {
@@ -161,8 +113,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
     .page-selector-wrapper {
-      border: 2px #0dc7e3 solid;
+      border: 2px #454545 solid;
       border-radius: 10px;
       .page-selector-item {
         display: inline-block;
