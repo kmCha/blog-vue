@@ -5,6 +5,7 @@
     <div class="body">
       {{{ article.body }}}
     </div>
+    <div class="ds-thread" data-thread-key="{{articleKey}}" data-title="{{article.title}}" data-url="http://kmhaoshuai.com/#!/articles/{{articleKey}}"></div>
   </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
   attached () {
     // 循环查询直到能访问到DOM，再加上代码高亮和图片居中
     const check = () => {
-      if (document.querySelectorAll('pre code').length) {
+      if (document.querySelector('.body p')) {
         // 代码高亮
         let codeBlocks = document.querySelectorAll('pre code')
         codeBlocks.forEach(block => {
@@ -50,6 +51,20 @@ export default {
         })
         // 回到顶部
         document.body.scrollTop = this.$store.state.windowHeight
+        // 多说评论框
+        let dsScript = document.querySelector('.duoshuo-script')
+        if (dsScript) {
+          document.body.removeChild(dsScript)
+          delete window.$ds
+          delete window.DUOSHUO
+        }
+        let ds = document.createElement('script')
+        ds.type = 'text/javascript'
+        ds.async = true
+        ds.src = (document.location.protocol === 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js'
+        ds.charset = 'UTF-8'
+        ds.classList.add('duoshuo-script')
+        document.body.appendChild(ds)
       } else {
         window.setTimeout(() => {
           check()
@@ -83,6 +98,9 @@ h1 {
     }
   }
   .body {
+    h1,h2,h3,h4,h5,h6 {
+      color: #0dc7e3;
+    }
     img {
       max-width: 100%;
     }
@@ -91,24 +109,23 @@ h1 {
       margin: 0 auto;
     }
     p > code {
-      background-color: #effdff;
+      background-color: #8ff0ff;
+      color: #000;
       display: inline-block;
       border-radius: 0.2rem;
       padding: 0 0.3rem;
+      line-height: 30px;
     }
     a {
-      background-color: #0dc7e3;
-      border-radius: 0.2rem;
-      color: #fff;
+      color: #0dc7e3;
+      text-decoration: underline;
       padding: 0 0.3rem;
-      transition: all 0.1s linear;
-      &:hover {
-        background-color: transparent;
-        color: #0dc7e3;
-      }
     }
     strong {
       color: #0dc7e3;
+    }
+    p {
+      line-height: 40px;
     }
   }
 }
