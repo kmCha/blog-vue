@@ -103,14 +103,6 @@ h1 {
       font: .8em Monaco,monospace;
       padding: 1px 4px;
     }
-    a {
-      color: #454545;
-      text-decoration: underline;
-      padding: 0 0.3rem;
-      &:hover {
-        color: #0dc7e3;
-      }
-    }
     strong {
       color: #454545;
     }

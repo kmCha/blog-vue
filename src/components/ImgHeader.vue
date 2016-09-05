@@ -1,5 +1,8 @@
 <template>
   <div class="img-header" :style="style">
+    <div class="site-title">
+      “纠西的博客”
+    </div>
     <div class="link-wrapper">
       <a v-link="{ path: '/articles' }">文章</a>
       <a v-link="{ path: '/categories' }">分类</a>
@@ -32,13 +35,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .img-header {
-  // height: 50rem;
   width: 100%;
-  background-image: url(http://7xoxzw.com1.z0.glb.clouddn.com/walt_disney_dreams_pursue_typography_3000x2000-2015-12-01-0203%E5%89%AF%E6%9C%AC.jpg);
+  background-image: url(http://7xoxzw.com1.z0.glb.clouddn.com/walt_disney_dreams_pursue_typography_3000x2000-2015-12-01-0203.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   position: relative;
+  .site-title {
+    color: #fff;
+    font-size: 50px;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translateX(-50%);
+  }
   .link-wrapper {
     position: absolute;
     left: 0;
