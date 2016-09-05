@@ -13,15 +13,14 @@
       <div class="article-list-tags">
         <article-tag v-for="tag in article.tags" :name="tag"></article-tag>
       </div>
-      <div class="article-list-date">
-        发布于：<span>{{article.date.substr(0,10)}}</span>
-      </div>
+      <article-info :date="article.date.substr(0,10)" :category="article.categories" :key="key"></article-info>
     </div>
   </div>
 </template>
 
 <script>
-import ArticleTag from './AriticleTag.vue'
+import ArticleTag from './ArticleTag'
+import ArticleInfo from './ArticleInfo'
 
 export default {
   data () {
@@ -40,7 +39,8 @@ export default {
   },
   props: ['article', 'key'],
   components: {
-    ArticleTag
+    ArticleTag,
+    ArticleInfo
   }
 }
 </script>
@@ -78,14 +78,6 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .article-list-date {
-      height: 20px;
-      overflow: hidden;
-      text-align: center;
-      span {
-        color: #0dc7e3;
-      }
     }
   }
 }

@@ -1,7 +1,10 @@
 <template>
   <loader></loader>
   <div class="article container" v-if="!loading">
-    <div class="title"><h1>{{ article.title }}</h1></div>
+    <div class="title">
+      <h1>{{ article.title }}</h1>
+      <article-info :date="article.date.substr(0,10)" :category="article.categories" :key="articleKey"></article-info>
+    </div>
     <div class="body">
       {{{ article.body }}}
     </div>
@@ -12,6 +15,9 @@
 <script>
 import Loader from '../components/Loader.vue'
 import { loadingMixin } from '../mixin'
+import domReady from '../utils/domReady'
+import insertDuoshuo from '../utils/duoshuo'
+import ArticleInfo from './ArticleInfo'
 
 export default {
   data () {
@@ -36,45 +42,27 @@ export default {
     }
   },
   attached () {
-    // 循环查询直到能访问到DOM，再加上代码高亮和图片居中
-    const check = () => {
-      if (document.querySelector('.body p')) {
-        // 代码高亮
-        let codeBlocks = document.querySelectorAll('pre code')
-        codeBlocks.forEach(block => {
-          window.hljs.highlightBlock(block)
-        })
-        // 图片居中
-        let imgs = document.querySelectorAll('p img')
-        imgs.forEach(img => {
-          img.classList.add('center')
-        })
-        // 回到顶部
-        document.body.scrollTop = this.$store.state.windowHeight
-        // 多说评论框
-        let dsScript = document.querySelector('.duoshuo-script')
-        if (dsScript) {
-          document.body.removeChild(dsScript)
-          delete window.$ds
-          delete window.DUOSHUO
-        }
-        let ds = document.createElement('script')
-        ds.type = 'text/javascript'
-        ds.async = true
-        ds.src = (document.location.protocol === 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js'
-        ds.charset = 'UTF-8'
-        ds.classList.add('duoshuo-script')
-        document.body.appendChild(ds)
-      } else {
-        window.setTimeout(() => {
-          check()
-        }, 50)
-      }
-    }
-    check()
+    // 循环查询直到能访问到DOM，再加上代码高亮和图片居中等
+    domReady('.body p').then(() => {
+      // 代码高亮
+      let codeBlocks = document.querySelectorAll('pre code')
+      codeBlocks.forEach(block => {
+        window.hljs.highlightBlock(block)
+      })
+      // 图片居中
+      let imgs = document.querySelectorAll('p img')
+      imgs.forEach(img => {
+        img.classList.add('center')
+      })
+      // 回到顶部
+      document.body.scrollTop = this.$store.state.windowHeight
+      // 多说评论框
+      insertDuoshuo()
+    })
   },
   components: {
-    Loader
+    Loader,
+    ArticleInfo
   },
   mixins: [loadingMixin]
 }

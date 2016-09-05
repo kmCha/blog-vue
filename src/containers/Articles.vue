@@ -21,6 +21,8 @@
 import ArticleListItem from '../components/ArticleListItem.vue'
 import Loader from '../components/Loader.vue'
 import { loadingMixin } from '../mixin'
+import inertDuoshuo from '../utils/duoshuo'
+import domReady from '../utils/domReady'
 
 export default {
   data () {
@@ -32,6 +34,8 @@ export default {
   watch: {
     'onPage' () {
       document.body.scrollTop = this.$store.state.windowHeight
+      // 多说评论数
+      inertDuoshuo()
     }
   },
   computed: {
@@ -68,6 +72,12 @@ export default {
   },
   ready () {
     this.onPage = this.$store.state.onPage
+  },
+  attached () {
+    // 多说评论数
+    domReady('.article-list-item').then(() => {
+      inertDuoshuo()
+    })
   },
   beforeDestroy () {
     this.$store.commit('setPage', this.onPage)
