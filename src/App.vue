@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <loader></loader>
     <img-header></img-header>
     <navigator></navigator>
     <router-view></router-view>
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+import Loader from './components/Loader.vue'
 import Navigator from './components/Navigator'
 import ImgHeader from './components/ImgHeader'
 import store from './store'
@@ -14,7 +16,8 @@ import store from './store'
 export default {
   components: {
     Navigator,
-    ImgHeader
+    ImgHeader,
+    Loader
   },
   replace: false,
   store: store,

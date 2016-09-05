@@ -1,6 +1,6 @@
 <template>
   <div class="loader" :style="style" v-if="loading">
-    <scale-loader color="#0dc7e3" height="50px" width="10px"></pulse-loader>
+    <scale-loader color="#444" height="50px" width="10px"></pulse-loader>
   </div>
 </template>
 

@@ -1,5 +1,4 @@
 <template>
-  <loader></loader>
   <div class="article container" v-if="!loading">
     <div class="title">
       <h1>{{ article.title }}</h1>
@@ -13,11 +12,10 @@
 </template>
 
 <script>
-import Loader from '../components/Loader.vue'
 import { loadingMixin } from '../mixin'
 import domReady from '../utils/domReady'
 import insertDuoshuo from '../utils/duoshuo'
-import ArticleInfo from './ArticleInfo'
+import ArticleInfo from '../components/ArticleInfo'
 
 export default {
   data () {
@@ -61,7 +59,6 @@ export default {
     })
   },
   components: {
-    Loader,
     ArticleInfo
   },
   mixins: [loadingMixin]

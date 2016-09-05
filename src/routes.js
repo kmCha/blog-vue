@@ -1,9 +1,9 @@
 import Articles from './containers/Articles'
 import Categories from './containers/Categories'
-import Category from './components/Category'
+import Category from './containers/Category'
 import Achieves from './containers/Achieves'
 import Tags from './containers/Tags'
-import Article from './components/Article'
+import Article from './containers/Article'
 
 export default {
   '/': {

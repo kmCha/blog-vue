@@ -1,5 +1,4 @@
 <template>
-  <loader></loader>
   <div class="categories" v-if="!loading">
     <h1>敬请期待...</h1>
     <!-- <div v-for="category in categories">
@@ -9,7 +8,6 @@
 </template>
 
 <script>
-import Loader from '../components/Loader.vue'
 import { loadingMixin } from '../mixin'
 
 export default {
@@ -27,9 +25,6 @@ export default {
     inc () {
       this.$store.commit('inc')
     }
-  },
-  components: {
-    Loader
   },
   mixins: [loadingMixin]
 }

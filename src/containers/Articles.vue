@@ -1,5 +1,4 @@
 <template>
-  <loader></loader>
   <div class="articles container" v-if="!loading">
     <div class="page-title">
       <h1>第{{onPage}}页文章</h1>
@@ -19,7 +18,6 @@
 
 <script>
 import ArticleListItem from '../components/ArticleListItem.vue'
-import Loader from '../components/Loader.vue'
 import { loadingMixin } from '../mixin'
 import inertDuoshuo from '../utils/duoshuo'
 import domReady from '../utils/domReady'
@@ -84,8 +82,7 @@ export default {
     this.$store.commit('setPage', this.onPage)
   },
   components: {
-    ArticleListItem,
-    Loader
+    ArticleListItem
   },
   mixins: [loadingMixin]
 }

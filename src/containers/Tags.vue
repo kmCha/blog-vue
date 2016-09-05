@@ -1,12 +1,10 @@
 <template>
-  <loader></loader>
   <div class="tags" v-if="!loading">
     <h1>敬请期待...</h1>
   </div>
 </template>
 
 <script>
-import Loader from '../components/Loader.vue'
 import { loadingMixin } from '../mixin'
 
 export default {
@@ -26,7 +24,6 @@ export default {
     }
   },
   components: {
-    Loader
   },
   mixins: [loadingMixin]
 }

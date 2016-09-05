@@ -1,5 +1,5 @@
 <template>
-  <div class="category" v-if="!$loadingRouteData">
+  <div class="category container" v-if="!$loading">
     <div v-for="article in articles">
       <a v-link="{ path: '/articles/' + $key }">{{article.date.substr(0,10)}} - {{article.title}}</a>
     </div>
@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { loadingMixin } from '../mixin'
+
 export default {
   data () {
     return {
@@ -41,7 +43,8 @@ export default {
     //     next()
     //   }
     }
-  }
+  },
+  mixins: [loadingMixin]
 }
 </script>
 
