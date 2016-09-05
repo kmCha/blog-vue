@@ -67,9 +67,13 @@ export default {
     document.body.scrollTop = this.$store.state.windowHeight
   },
   route: {
-    data ({next, to}) {
-      this.onPage = to.params.page
-      next()
+    data ({next, abort, to}) {
+      if (to.params.page > this.numOfPages) {
+        abort()
+      } else {
+        this.onPage = to.params.page
+        next()
+      }
     }
   },
   components: {

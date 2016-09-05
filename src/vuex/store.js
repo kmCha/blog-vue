@@ -11,8 +11,7 @@ var state = {
   loading: true,
   windowWidth: 0,
   windowHeight: 0,
-  headerFixed: false,
-  onPage: 1
+  headerFixed: false
 }
 
 var mutations = {
