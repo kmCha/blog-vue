@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { loadingMixin } from '../mixin'
+import { loadingMixin } from '../mixins'
 import domReady from '../utils/domReady'
 import insertDuoshuo from '../utils/duoshuo'
 import ArticleInfo from '../components/ArticleInfo'

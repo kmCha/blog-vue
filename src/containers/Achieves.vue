@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { loadingMixin } from '../mixin'
+import { loadingMixin } from '../mixins'
 
 export default {
   data () {

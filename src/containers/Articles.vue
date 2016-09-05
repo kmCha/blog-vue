@@ -18,7 +18,7 @@
 
 <script>
 import ArticleListItem from '../components/ArticleListItem.vue'
-import { loadingMixin } from '../mixin'
+import { loadingMixin } from '../mixins'
 import insertDuoshuo from '../utils/duoshuo'
 import domReady from '../utils/domReady'
 

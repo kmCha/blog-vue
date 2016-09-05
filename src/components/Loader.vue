@@ -6,7 +6,7 @@
 
 <script>
 import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-import { loadingMixin } from '../mixin'
+import { loadingMixin } from '../mixins'
 
 export default {
   data () {

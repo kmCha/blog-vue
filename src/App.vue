@@ -11,7 +11,7 @@
 import Loader from './components/Loader.vue'
 import Navigator from './components/Navigator'
 import ImgHeader from './components/ImgHeader'
-import store from './store'
+import store from './vuex/store'
 
 export default {
   components: {

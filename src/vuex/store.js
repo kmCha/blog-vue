@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getArticles, getCategories, getTags } from './api'
+import { fetchData } from '../api'
 
 Vue.use(Vuex)
 
@@ -48,12 +48,16 @@ var mutations = {
 
 var actions = {
   getArticles: ({commit}) => {
-    return getArticles().then(res => {
+    return fetchData('https://chamajiuxi.wilddogio.com/blog/posts.json', {
+      orderBy: '"date"',
+      limitToLast: 100
+    }).then(res => {
       commit('setArticles', res.json())
     })
   },
   getCategories: ({commit}) => {
-    return getCategories().then(res => {
+    return fetchData('https://chamajiuxi.wilddogio.com/blog/categories.json')
+    .then(res => {
       // 解决野狗返回的json数组长度为1时变成key为0的对象而不是数组的问题
       let categories = res.json()
       for (let key in categories) {
@@ -65,7 +69,8 @@ var actions = {
     })
   },
   getTags: ({commit}) => {
-    return getTags().then(res => {
+    return fetchData('https://chamajiuxi.wilddogio.com/blog/tags.json')
+    .then(res => {
       let tags = res.json()
       commit('setTags', tags)
     })
