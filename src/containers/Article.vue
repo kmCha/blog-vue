@@ -67,8 +67,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+@import "../variables/index.scss";
+
 h1 {
-  color: #0dc7e3;
+  color: $primary-color;
 }
 .article {
   /*display: flex;
@@ -79,12 +81,12 @@ h1 {
     text-align: center;
     margin-bottom: 5rem;
     h1 {
-      color: #444;
+      color: $title-color;
     }
   }
   .body {
     h1,h2,h3,h4,h5,h6 {
-      color: #454545;
+      color: $secondary-title-color;
     }
     img {
       max-width: 100%;
@@ -101,7 +103,7 @@ h1 {
       padding: 1px 4px;
     }
     strong {
-      color: #454545;
+      color: $secondary-title-color;
     }
     p {
       line-height: 40px;

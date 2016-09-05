@@ -81,6 +81,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import "../variables/index.scss";
+
 .articles {
   position: relative;
   .page-title {
@@ -88,7 +90,7 @@ export default {
     border-bottom: 4px #555 dashed;
     margin-bottom: 20px;
     h1 {
-      color: #444;
+      color: $title-color;
       margin-bottom: 50px;
     }
   }
@@ -99,7 +101,7 @@ export default {
     align-items: center;
     margin-top: 50px;
     .page-selector-wrapper {
-      border: 2px #454545 solid;
+      border: 2px $secondary-title-color solid;
       border-radius: 10px;
       .page-selector-item {
         display: inline-block;
@@ -112,7 +114,7 @@ export default {
           color: inherit;
         }
         &.active {
-          color: #0dc7e3;
+          color: $primary-color;
         }
       }
     }

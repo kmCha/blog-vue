@@ -1,18 +1,15 @@
-import Articles from './containers/Articles'
-import Categories from './containers/Categories'
-import Category from './containers/Category'
-import Achieves from './containers/Achieves'
-import Tags from './containers/Tags'
-import Article from './containers/Article'
+import Articles from '../containers/Articles'
+import Categories from '../containers/Categories'
+import Category from '../containers/Category'
+import Achieves from '../containers/Achieves'
+import Tags from '../containers/Tags'
+import Article from '../containers/Article'
 
 export default {
   '/': {
     component: {
       template: ''
     }
-  },
-  '/articles': {
-    component: Articles
   },
   '/articles/page/:page': {
     component: Articles
@@ -34,5 +31,6 @@ export default {
   }
 }
 export const redirect = {
-  '*': '/articles'
+  '*': '/',
+  '/articles': '/articles/page/1'
 }

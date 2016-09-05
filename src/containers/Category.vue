@@ -50,8 +50,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "../variables/index.scss";
+
 h1 {
-  color: #42b983;
+  color: $title-color;
 }
 .category {
   display: flex;

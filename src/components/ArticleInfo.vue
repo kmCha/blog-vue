@@ -13,23 +13,24 @@
 </script>
 
 <style lang="scss" scoped>
-  .article-info {
-    height: 20px;
-    overflow: hidden;
-    text-align: center;
-    span {
-      display: inline-block;
-      padding-left: 1px;
-      padding-right: 5px;
-      // border-right: 2px #ef70bb solid;
-      color: #555;
-      margin-right: 10px;
-      &:last-child {
-        border-right: none;
-      }
-    }
-    .iconfont {
-      margin-right: 5px;
+@import "../variables/index.scss";
+
+.article-info {
+  height: 20px;
+  overflow: hidden;
+  text-align: center;
+  span {
+    display: inline-block;
+    padding-left: 1px;
+    padding-right: 5px;
+    color: $font-color;
+    margin-right: 10px;
+    &:last-child {
+      border-right: none;
     }
   }
+  .iconfont {
+    margin-right: 5px;
+  }
+}
 </style>

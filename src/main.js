@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
-import routes, { redirect } from './routes'
+import routes, { redirect } from './router'
 
 var VueResource = require('vue-resource')
 

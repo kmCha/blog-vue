@@ -57,11 +57,8 @@ export default {
 </script>
 
 <style lang="scss">
-$primary-color: #0dc7e3;
-$secondary-color: #ef70bb;
-$font-color: #555;
-$title-color: #444;
-$secondary-title-color: #454545;
+@import "./variables/index.scss";
+
 html {
   font-size: 16px;
   font-family: "Arial","LiHei Pro Medium","Microsoft YaHei","黑体","宋体",sans-serif;

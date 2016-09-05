@@ -43,6 +43,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import "../variables/index.scss";
+
 .navigator {
   position: fixed;
   left: 0;
@@ -62,10 +64,10 @@ export default {
       height: 30px;
       line-height: 30px;
       transition: 0.2s ease all;
-      color: #2b4241;
+      color: $navigator-color;
       text-decoration: none;
       &:hover {
-        color: #0dc7e3;
+        color: $primary-color;
       }
     }
   }
