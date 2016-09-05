@@ -6,6 +6,11 @@ import Tags from './containers/Tags'
 import Article from './components/Article'
 
 export default {
+  '/': {
+    component: {
+      template: ''
+    }
+  },
   '/articles': {
     component: Articles
   },

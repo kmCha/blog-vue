@@ -78,6 +78,7 @@ export default {
     domReady('.article-list-item').then(() => {
       inertDuoshuo()
     })
+    document.body.scrollTop = this.$store.state.windowHeight
   },
   beforeDestroy () {
     this.$store.commit('setPage', this.onPage)
