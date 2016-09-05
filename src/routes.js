@@ -14,6 +14,9 @@ export default {
   '/articles': {
     component: Articles
   },
+  '/articles/page/:page': {
+    component: Articles
+  },
   '/categories': {
     component: Categories
   },

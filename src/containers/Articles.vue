@@ -8,9 +8,9 @@
     </div>
     <div class="page-selector">
       <div class="page-selector-wrapper">
-        <div class="page-selector-item" @click="prePage">《</div>
-        <div v-for="n in numOfPages" class="page-selector-item {{n===onPage-1 ? 'active':''}}" @click="setPage">{{n + 1}}</div>
-        <div class="page-selector-item" @click="nextPage">》</div>
+        <a class="page-selector-item" v-link="{path: '/articles/page/' + prevPage}">《</a>
+        <a v-for="n in numOfPages" v-link="{path: '/articles/page/' + (n+1)}" class="page-selector-item {{n===onPage-1 ? 'active':''}}">{{n + 1}}</a>
+        <a class="page-selector-item" v-link="{path: '/articles/page/' + nextPage}">》</a>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
 <script>
 import ArticleListItem from '../components/ArticleListItem.vue'
 import { loadingMixin } from '../mixin'
-import inertDuoshuo from '../utils/duoshuo'
+import insertDuoshuo from '../utils/duoshuo'
 import domReady from '../utils/domReady'
 
 export default {
@@ -33,7 +33,7 @@ export default {
     'onPage' () {
       document.body.scrollTop = this.$store.state.windowHeight
       // 多说评论数
-      inertDuoshuo()
+      insertDuoshuo()
     }
   },
   computed: {
@@ -51,35 +51,26 @@ export default {
     },
     numOfPages () {
       return Math.ceil(this.$store.getters.articlesLength / this.numsPerPage)
-    }
-  },
-  methods: {
-    setPage (e) {
-      this.onPage = Number(e.target.innerHTML)
     },
-    prePage () {
-      if (this.onPage > 1) {
-        this.onPage--
-      }
+    prevPage () {
+      return Number(this.onPage) === 1 ? 1 : Number(this.onPage) - 1
     },
     nextPage () {
-      if (this.onPage < this.numOfPages) {
-        this.onPage++
-      }
+      return Number(this.onPage) === Number(this.numOfPages) ? Number(this.onPage) : Number(this.onPage) + 1
     }
-  },
-  ready () {
-    this.onPage = this.$store.state.onPage
   },
   attached () {
     // 多说评论数
     domReady('.article-list-item').then(() => {
-      inertDuoshuo()
+      insertDuoshuo()
     })
     document.body.scrollTop = this.$store.state.windowHeight
   },
-  beforeDestroy () {
-    this.$store.commit('setPage', this.onPage)
+  route: {
+    data ({next, to}) {
+      this.onPage = to.params.page
+      next()
+    }
   },
   components: {
     ArticleListItem
@@ -92,10 +83,6 @@ export default {
 <style lang="scss" scoped>
 .articles {
   position: relative;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // flex-direction: column;
   .page-title {
     text-align: center;
     border-bottom: 4px #555 dashed;
@@ -120,6 +107,10 @@ export default {
         margin: 0 5px;
         cursor: pointer;
         transition: .2s color linear;
+        text-decoration: none;
+        &:hover {
+          color: inherit;
+        }
         &.active {
           color: #0dc7e3;
         }
