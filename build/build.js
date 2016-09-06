@@ -19,8 +19,9 @@ spinner.start()
 
 var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
 rm('-rf', assetsPath)
-rm('-rf', '../kmCha.github.io/static')
-rm('-rf', '../kmCha.github.io/index.html')
+mv('../kmCha.github.io/CNAME', '../')
+rm('-rf', '../kmCha.github.io/*')
+mv('../CNAME', '../kmCha.github.io/')
 mkdir('-p', assetsPath)
 cp('-R', 'static/', config.build.assetsRoot)
 
@@ -34,6 +35,5 @@ webpack(webpackConfig, function (err, stats) {
     chunks: false,
     chunkModules: false
   }) + '\n')
-  cp('-R', path.resolve(assetsPath, '../index.html'), '../kmCha.github.io')
-  cp('-R', assetsPath, '../kmCha.github.io')
+  cp('-R', config.build.assetsRoot + '/', '../kmCha.github.io')
 })
