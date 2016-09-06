@@ -22,7 +22,7 @@ rm('-rf', assetsPath)
 rm('-rf', '../kmCha.github.io/static')
 rm('-rf', '../kmCha.github.io/index.html')
 mkdir('-p', assetsPath)
-cp('-R', 'static/', assetsPath)
+cp('-R', 'static/', config.build.assetsRoot)
 
 webpack(webpackConfig, function (err, stats) {
   spinner.stop()
