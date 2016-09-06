@@ -106,7 +106,7 @@ h1 {
       color: $secondary-title-color;
     }
     p {
-      line-height: 40px;
+      line-height: 35px;
     }
     pre > code {
       border-radius: 10px;

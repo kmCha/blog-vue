@@ -69,6 +69,10 @@ body {
   justify-content: center;
   // padding-top: 50px;
   margin: 0;
+  #app {
+    color: $font-color;
+    width: 100%;
+  }
   .container {
     padding: 2rem 20rem;
     @media (max-width: 1140px) {
@@ -76,10 +80,6 @@ body {
       padding: 2rem 0;
       margin: 0 auto;
     }
-  }
-  #app {
-    color: $font-color;
-    width: 100%;
   }
   a {
     color: $secondary-title-color;
@@ -91,14 +91,15 @@ body {
   p {
     text-align:justify;
   }
+  ::selection {
+    background: $primary-color;
+    color: #fff;
+  }
 }
 .fade-transition {
   transition: all .3s ease;
   opacity: 1;
 }
-
-/* .expand-enter 定义进入的开始状态 */
-/* .expand-leave 定义离开的结束状态 */
 .fade-enter, .fade-leave {
   opacity: 0;
 }
