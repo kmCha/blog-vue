@@ -44,12 +44,12 @@ export default {
     domReady('.body p').then(() => {
       // 代码高亮
       let codeBlocks = document.querySelectorAll('pre code')
-      codeBlocks.forEach(block => {
+      Array.prototype.forEach.call(codeBlocks, (block) => {
         window.hljs.highlightBlock(block)
       })
       // 图片居中
       let imgs = document.querySelectorAll('p img')
-      imgs.forEach(img => {
+      Array.prototype.forEach.call(imgs, (img) => {
         img.classList.add('center')
       })
       // 回到顶部
