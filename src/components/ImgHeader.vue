@@ -50,8 +50,8 @@ export default {
           })
           particle.animationConfig({
             totalFrame: 500, // 动画总时间，默认500帧
-            cols: 400,
-            rows: 400,
+            cols: 500,
+            rows: 300,
             animationType: 'easeOutElastic',
             blur: function (r, g, b, a) {
               if (r < 20 && g < 20 && b < 20 && a > 0) {
