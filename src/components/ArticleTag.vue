@@ -1,7 +1,9 @@
 <template>
-  <a v-link="{ path: '/tags/' + name }" class="article-tag" :style="backgroundColor">
-    {{name}}
-  </a>
+  <div>
+    <router-link :to="{ path: '/tags/' + name }" class="article-tag" :style="backgroundColor">
+      {{name}}
+    </router-link>
+  </div>
 </template>
 
 <script>

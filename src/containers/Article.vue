@@ -2,12 +2,10 @@
   <div class="article container" v-if="!loading">
     <div class="title">
       <h1>{{ article.title }}</h1>
-      <article-info :date="article.date.substr(0,10)" :category="article.categories" :key="articleKey"></article-info>
+      <article-info :date="article.date.substr(0,10)" :category="article.categories" :article-key="articleKey"></article-info>
     </div>
-    <div class="body">
-      {{{ article.body }}}
-    </div>
-    <div class="ds-thread" data-thread-key="{{articleKey}}" data-title="{{article.title}}" data-url="http://kmhaoshuai.com/#!/articles/{{articleKey}}"></div>
+    <div class="body" v-html="article.body"></div>
+    <div class="ds-thread" :data-thread-key="articleKey" :data-title="article.title" :data-url="'http://kmhaoshuai.com/#!/articles/' + articleKey"></div>
   </div>
 </template>
 
@@ -33,29 +31,37 @@ export default {
       this.$store.commit('inc')
     }
   },
-  route: {
-    data ({next, to}) {
-      this.articleKey = to.params.key
-      next()
-    }
+  // route: {
+  //   data ({next, to}) {
+  //     this.articleKey = to.params.key
+  //     console.log(to.params.key)
+  //     next()
+  //   }
+  // },
+  created () {
+    this.articleKey = this.$route.params.key
   },
-  attached () {
-    // 循环查询直到能访问到DOM，再加上代码高亮和图片居中等
-    domReady('.body p').then(() => {
-      // 代码高亮
-      let codeBlocks = document.querySelectorAll('pre code')
-      Array.prototype.forEach.call(codeBlocks, (block) => {
-        window.hljs.highlightBlock(block)
+  mounted () {
+    this.$nextTick(() => {
+      // 循环查询直到能访问到DOM，再加上代码高亮和图片居中等
+      domReady('.body p').then(() => {
+        // 代码高亮
+        let codeBlocks = document.querySelectorAll('pre code')
+        Array.prototype.forEach.call(codeBlocks, (block) => {
+          window.hljs.highlightBlock(block)
+        })
+        // 图片居中
+        let imgs = document.querySelectorAll('p img')
+        Array.prototype.forEach.call(imgs, (img) => {
+          img.classList.add('center')
+        })
+        // 回到顶部
+        document.body.scrollTop = this.$store.state.windowHeight
+        // 多说评论框
+        insertDuoshuo()
+      }).catch((e) => {
+        console.log(e)
       })
-      // 图片居中
-      let imgs = document.querySelectorAll('p img')
-      Array.prototype.forEach.call(imgs, (img) => {
-        img.classList.add('center')
-      })
-      // 回到顶部
-      document.body.scrollTop = this.$store.state.windowHeight
-      // 多说评论框
-      insertDuoshuo()
     })
   },
   components: {

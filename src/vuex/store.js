@@ -51,14 +51,14 @@ var actions = {
       orderBy: '"date"',
       limitToLast: 100
     }).then(res => {
-      commit('setArticles', res.json())
+      commit('setArticles', res.body)
     })
   },
   getCategories: ({commit}) => {
     return fetchData('https://chamajiuxi.wilddogio.com/blog/categories.json')
     .then(res => {
       // 解决野狗返回的json数组长度为1时变成key为0的对象而不是数组的问题
-      let categories = res.json()
+      let categories = res.body
       for (let key in categories) {
         if (!categories[key].length && categories[key].length !== 0) {
           categories[key] = [categories[key][0]]
@@ -70,7 +70,7 @@ var actions = {
   getTags: ({commit}) => {
     return fetchData('https://chamajiuxi.wilddogio.com/blog/tags.json')
     .then(res => {
-      let tags = res.json()
+      let tags = res.body
       commit('setTags', tags)
     })
   }

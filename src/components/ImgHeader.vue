@@ -3,14 +3,11 @@
     <canvas id="canvas" :width="width" :height="height">
       “纠西的博客”
     </canvas>
-    <!-- <div class="site-title">
-      “纠西的博客”
-    </div> -->
     <div class="link-wrapper">
-      <a v-link="{ path: '/articles' }">文章</a>
-      <a v-link="{ path: '/categories' }">分类</a>
-      <a v-link="{ path: '/achieves' }">归档</a>
-      <a v-link="{ path: '/tags' }">标签</a>
+      <router-link :to="{ path: '/articles' }">文章</router-link>
+      <router-link :to="{ path: '/categories' }">分类</router-link>
+      <router-link :to="{ path: '/achieves' }">归档</router-link>
+      <router-link :to="{ path: '/tags' }">标签</router-link>
     </div>
   </div>
 </template>
@@ -39,36 +36,32 @@ export default {
   components: {
     Navigator
   },
-  attached () {
-    this.$watch('width', (newVal, oldVal) => {
-      if (newVal !== oldVal) {
-        this.$nextTick(() => {
-          let particle = new Partimate('#canvas')
-          particle.imageConfig({ // 同canvas.context.drawImage() API的9个参数
-            imgUrl: '/public/blog-title.png',
-            cover: true
-          })
-          particle.animationConfig({
-            totalFrame: 500, // 动画总时间，默认500帧
-            cols: 500,
-            rows: 300,
-            animationType: 'easeOutElastic',
-            blur: function (r, g, b, a) {
-              if (r < 20 && g < 20 && b < 20 && a > 0) {
-                return 0
-              }
-              return 10
-            },
-            filter: function (r, g, b, a) { // 像素filter，滤出rgba满足条件的像素
-              return (g > 180 || r > 200 || b > 200) && a > 0
-            },
-            delay: function (index) { // particle动画执行延时，输入参数为该粒子在particles数组里的index
-              return parseInt(Math.random() * 500)
-            }
-          })
-          particle.animate()
-        })
-      }
+  updated () {
+    this.$nextTick(() => {
+      let particle = new Partimate('#canvas')
+      particle.imageConfig({ // 同canvas.context.drawImage() API的9个参数
+        imgUrl: '/public/blog-title.png',
+        cover: true
+      })
+      particle.animationConfig({
+        totalFrame: 500, // 动画总时间，默认500帧
+        cols: 500,
+        rows: 300,
+        animationType: 'easeOutElastic',
+        blur: function (r, g, b, a) {
+          if (r < 20 && g < 20 && b < 20 && a > 0) {
+            return 0
+          }
+          return 10
+        },
+        filter: function (r, g, b, a) { // 像素filter，滤出rgba满足条件的像素
+          return (g > 180 || r > 200 || b > 200) && a > 0
+        },
+        delay: function (index) { // particle动画执行延时，输入参数为该粒子在particles数组里的index
+          return parseInt(Math.random() * 500)
+        }
+      })
+      particle.animate()
     })
   }
 }

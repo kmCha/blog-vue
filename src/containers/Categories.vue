@@ -1,9 +1,6 @@
 <template>
   <div class="categories" v-if="!loading">
     <h1>敬请期待...</h1>
-    <!-- <div v-for="category in categories">
-      <a v-link="{ path: '/categories/' + $key }">{{$key}}({{category.length || '1'}})</a>
-    </div> -->
   </div>
 </template>
 

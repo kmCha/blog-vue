@@ -19,15 +19,14 @@ export default {
     ImgHeader,
     Loader
   },
-  replace: false,
   store: store,
-  ready () {
+  mounted () {
     let defaultWidth = 1527
     let defaultSize = 16
     setFontSize()
     window.addEventListener('resize', e => {
       setFontSize()
-    })
+    }, false)
     // 根据窗口大小设置html字体大小，rem响应式
     function setFontSize () {
       let windowWidth = window.innerWidth
@@ -96,11 +95,11 @@ body {
     color: #fff;
   }
 }
-.fade-transition {
+.fade-enter-active, .fade-leave {
   transition: all .3s ease;
   opacity: 1;
 }
-.fade-enter, .fade-leave {
+.fade-enter, .fade-leave-active {
   opacity: 0;
 }
 </style>

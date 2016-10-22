@@ -1,7 +1,7 @@
 <template>
   <div class="category container" v-if="!$loading">
-    <div v-for="article in articles">
-      <a v-link="{ path: '/articles/' + $key }">{{article.date.substr(0,10)}} - {{article.title}}</a>
+    <div v-for="(article, key) in articles">
+      <router-link :to="{ path: '/articles/' + key }">{{article.date.substr(0,10)}} - {{article.title}}</router-link>
     </div>
   </div>
 </template>

@@ -1,12 +1,14 @@
 <template>
-  <div class="navigator" v-show="headerFixed" transition="fade">
-    <div class="link-wrapper">
-      <a v-link="{ path: '/articles' }">文章</a>
-      <a v-link="{ path: '/categories' }">分类</a>
-      <a v-link="{ path: '/achieves' }">归档</a>
-      <a v-link="{ path: '/tags' }">标签</a>
+  <transition name="fade">
+    <div class="navigator" v-show="headerFixed">
+      <div class="link-wrapper">
+        <router-link :to="{ path: '/articles' }">文章</router-link>
+        <router-link :to="{ path: '/categories' }">分类</router-link>
+        <router-link :to="{ path: '/achieves' }">归档</router-link>
+        <router-link :to="{ path: '/tags' }">标签</router-link>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -21,22 +23,24 @@ export default {
       return this.$store.state.headerFixed
     }
   },
-  attached () {
-    window.addEventListener('scroll', e => {
-      if (window.scrollTimer) {
-        window.clearTimeout(window.scrollTimer)
-      }
-      window.scrollTimer = window.setTimeout(() => {
-        let state = this.$store.state
-        let top = document.body.scrollTop
-        if (top < state.windowHeight - 50 && state.headerFixed) {
-          this.$store.commit('unfixHeader')
+  mounted () {
+    this.$nextTick(() => {
+      window.addEventListener('scroll', e => {
+        if (window.scrollTimer) {
+          window.clearTimeout(window.scrollTimer)
         }
-        if (top > state.windowHeight - 50 && !state.headerFixed) {
-          this.$store.commit('fixHeader')
-        }
-      }, 80)
-    }, false)
+        window.scrollTimer = window.setTimeout(() => {
+          let state = this.$store.state
+          let top = document.body.scrollTop
+          if (top < state.windowHeight - 50 && state.headerFixed) {
+            this.$store.commit('unfixHeader')
+          }
+          if (top > state.windowHeight - 50 && !state.headerFixed) {
+            this.$store.commit('fixHeader')
+          }
+        }, 80)
+      }, false)
+    })
   }
 }
 </script>

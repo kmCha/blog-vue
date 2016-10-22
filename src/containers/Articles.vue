@@ -3,14 +3,14 @@
     <div class="page-title">
       <h1>第{{onPage}}页文章</h1>
     </div>
-    <div v-for="article in articles">
-      <article-list-item :article="article" :key="$key"></article-list-item>
+    <div v-for="(article, key) in articles">
+      <article-list-item :article="article" :article-key="key"></article-list-item>
     </div>
     <div class="page-selector">
       <div class="page-selector-wrapper">
-        <a class="page-selector-item" v-link="{path: '/articles/page/' + prevPage}">《</a>
-        <a v-for="n in numOfPages" v-link="{path: '/articles/page/' + (n+1)}" class="page-selector-item {{n===onPage-1 ? 'active':''}}">{{n + 1}}</a>
-        <a class="page-selector-item" v-link="{path: '/articles/page/' + nextPage}">》</a>
+        <router-link class="page-selector-item" :to="{path: '/articles/page/' + prevPage}">《</router-link>
+        <router-link v-for="n in numOfPages" class="page-selector-item" :to="{path: '/articles/page/' + n}">{{n}}</router-link>
+        <router-link class="page-selector-item" :to="{path: '/articles/page/' + nextPage}">》</router-link>
       </div>
     </div>
   </div>
@@ -30,10 +30,20 @@ export default {
     }
   },
   watch: {
-    'onPage' () {
-      document.body.scrollTop = this.$store.state.windowHeight
-      // 多说评论数
-      insertDuoshuo()
+    '$route': 'changePage'
+  },
+  methods: {
+    changePage () {
+      if (this.$route.params.page > this.numOfPages) {
+        this.$router.back()
+      } else {
+        this.onPage = this.$route.params.page
+        // 多说评论数
+        domReady('.article-list-item').then(() => {
+          insertDuoshuo()
+          document.body.scrollTop = this.$store.state.windowHeight
+        })
+      }
     }
   },
   computed: {
@@ -59,22 +69,10 @@ export default {
       return Number(this.onPage) === Number(this.numOfPages) ? Number(this.onPage) : Number(this.onPage) + 1
     }
   },
-  attached () {
-    // 多说评论数
-    domReady('.article-list-item').then(() => {
-      insertDuoshuo()
+  mounted () {
+    this.$nextTick(() => {
+      this.changePage()
     })
-    document.body.scrollTop = this.$store.state.windowHeight
-  },
-  route: {
-    data ({next, abort, to}) {
-      if (to.params.page > this.numOfPages) {
-        abort()
-      } else {
-        this.onPage = to.params.page
-        next()
-      }
-    }
   },
   components: {
     ArticleListItem
@@ -117,8 +115,13 @@ export default {
         &:hover {
           color: inherit;
         }
-        &.active {
+        &.router-link-active {
           color: $primary-color;
+        }
+        &:first-child, &:last-child {
+          &.router-link-active {
+            color: inherit;
+          }
         }
       }
     }

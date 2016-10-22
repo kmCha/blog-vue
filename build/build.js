@@ -17,13 +17,15 @@ console.log(
 var spinner = ora('building for production...')
 spinner.start()
 
-var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
+// var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
+var assetsPath = config.build.assetsRoot
+console.log(assetsPath)
 rm('-rf', assetsPath)
 mv('../kmCha.github.io/CNAME', '../')
 rm('-rf', '../kmCha.github.io/*')
 mv('../CNAME', '../kmCha.github.io/')
 mkdir('-p', assetsPath)
-cp('-R', 'static/', config.build.assetsRoot)
+cp('-R', 'static/*', config.build.assetsRoot)
 
 webpack(webpackConfig, function (err, stats) {
   spinner.stop()
@@ -35,5 +37,5 @@ webpack(webpackConfig, function (err, stats) {
     chunks: false,
     chunkModules: false
   }) + '\n')
-  cp('-R', config.build.assetsRoot + '/', '../kmCha.github.io')
+  cp('-R', config.build.assetsRoot + '/*', '../kmCha.github.io')
 })

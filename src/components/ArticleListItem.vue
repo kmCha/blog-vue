@@ -1,19 +1,17 @@
 <template>
   <div class="article-list-item">
     <div class="article-list-title">
-      <h2><a v-link="{ path: '/articles/' + key }">{{article.title}}</a></h2>
+      <h2><router-link :to="{ path: '/articles/' + articleKey }">{{article.title}}</router-link></h2>
     </div>
     <div class="article-list-body">
-      <div class="article-list-img">
-        {{{imgHTML}}}
+      <div class="article-list-img" v-html="imgHTML">
       </div>
-      <div class="article-list-content">
-        {{{contentHTML}}}
+      <div class="article-list-content" v-html="contentHTML">
       </div>
       <div class="article-list-tags">
         <article-tag v-for="tag in article.tags" :name="tag"></article-tag>
       </div>
-      <article-info :date="article.date.substr(0,10)" :category="article.categories" :key="key"></article-info>
+      <article-info :date="article.date.substr(0,10)" :category="article.categories" :article-key="articleKey"></article-info>
     </div>
   </div>
 </template>
@@ -29,15 +27,17 @@ export default {
   },
   computed: {
     imgHTML () {
-      return this.article.body.match(/<img[\w\W]*?>/)
+      let imgMatch = this.article.body.match(/<img[\w\W]*?>/)
+      return imgMatch ? imgMatch[0] : ''
     },
     contentHTML () {
-      return this.article.body.match(/<p>(?!<)[\w\W]*?<\/p>/)
+      let contentMatch = this.article.body.match(/<p>(?!<)[\w\W]*?<\/p>/)
+      return contentMatch ? contentMatch[0] : ''
     }
   },
   methods: {
   },
-  props: ['article', 'key'],
+  props: ['article', 'article-key'],
   components: {
     ArticleTag,
     ArticleInfo

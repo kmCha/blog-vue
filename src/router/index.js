@@ -5,50 +5,60 @@
 // import Tags from '../containers/Tags'
 // import Article from '../containers/Article'
 
-export default {
-  '/': {
+export default [
+  {
+    path: '/',
     component: {
-      template: ''
+      template: '<div></div>'
     }
   },
-  '/articles/page/:page': {
-    // component: Articles
+  {
+    path: '/articles/page/:page',
     component: function (resolve) {
       require(['../containers/Articles'], resolve)
     }
   },
-  '/categories': {
+  {
+    path: '/categories',
     // component: Categories
     component: function (resolve) {
       require(['../containers/Categories'], resolve)
     }
   },
-  '/achieves': {
+  {
+    path: '/achieves',
     // component: Achieves
     component: function (resolve) {
       require(['../containers/Achieves'], resolve)
     }
   },
-  '/tags': {
+  {
+    path: '/tags',
     // component: Tags
     component: function (resolve) {
       require(['../containers/Tags'], resolve)
     }
   },
-  '/articles/:key': {
+  {
+    path: '/articles/:key',
     // component: Article
     component: function (resolve) {
       require(['../containers/Article'], resolve)
     }
   },
-  '/categories/:key': {
+  {
+    path: '/categories/:key',
     // component: Category
     component: function (resolve) {
       require(['../containers/Category'], resolve)
     }
+  },
+  {
+    path: '/articles',
+    redirect: '/articles/page/1'
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
-}
-export const redirect = {
-  '*': '/',
-  '/articles': '/articles/page/1'
-}
+]
