@@ -3,7 +3,9 @@
     <loader></loader>
     <img-header></img-header>
     <navigator></navigator>
-    <router-view></router-view>
+    <transition :name="transitionName">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -14,6 +16,11 @@ import ImgHeader from './components/ImgHeader'
 import store from './vuex/store'
 
 export default {
+  data () {
+    return {
+      transitionName: 'fade'
+    }
+  },
   components: {
     Navigator,
     ImgHeader,
@@ -100,6 +107,24 @@ body {
   opacity: 1;
 }
 .fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+.slide-right-enter-active, .slide-right-leave {
+  transition: all .5s ease;
+  opacity: 1;
+}
+.slide-right-enter, .slide-right-leave-active {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-left-enter-active, .slide-left-leave {
+  transition: all .5s ease;
+  opacity: 1;
+}
+.slide-left-enter, .slide-left-leave-active {
+  transform: translateX(-100%);
   opacity: 0;
 }
 </style>

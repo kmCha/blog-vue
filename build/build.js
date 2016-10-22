@@ -19,7 +19,6 @@ spinner.start()
 
 // var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
 var assetsPath = config.build.assetsRoot
-console.log(assetsPath)
 rm('-rf', assetsPath)
 mv('../kmCha.github.io/CNAME', '../')
 rm('-rf', '../kmCha.github.io/*')

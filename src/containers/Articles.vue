@@ -3,9 +3,9 @@
     <div class="page-title">
       <h1>第{{onPage}}页文章</h1>
     </div>
-    <div v-for="(article, key) in articles" :key="key">
-      <article-list-item :article="article" :article-key="key"></article-list-item>
-    </div>
+      <div v-for="(article, key) in articles" :key="key">
+        <article-list-item :article="article" :article-key="key"></article-list-item>
+      </div>
     <div class="page-selector">
       <div class="page-selector-wrapper">
         <router-link class="page-selector-item" :to="{path: '/articles/page/' + prevPage}">《</router-link>
@@ -19,8 +19,7 @@
 <script>
 import ArticleListItem from '../components/ArticleListItem.vue'
 import { loadingMixin } from '../mixins'
-import insertDuoshuo from '../utils/duoshuo'
-import domReady from '../utils/domReady'
+import { insertDuoshuo, domReady, scrollBodyTo } from '../utils'
 
 export default {
   data () {
@@ -33,15 +32,15 @@ export default {
     '$route': 'changePage'
   },
   methods: {
-    changePage () {
+    changePage (to, from) {
       if (this.$route.params.page > this.numOfPages) {
         this.$router.back()
       } else {
         this.onPage = this.$route.params.page
-        // 多说评论数
         domReady('.article-list-item').then(() => {
+          // 多说评论数
           insertDuoshuo()
-          document.body.scrollTop = this.$store.state.windowHeight
+          scrollBodyTo(this.$store.state.windowHeight)
         })
       }
     }
