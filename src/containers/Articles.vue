@@ -3,7 +3,7 @@
     <div class="page-title">
       <h1>第{{onPage}}页文章</h1>
     </div>
-    <div v-for="(article, key) in articles">
+    <div v-for="(article, key) in articles" :key="key">
       <article-list-item :article="article" :article-key="key"></article-list-item>
     </div>
     <div class="page-selector">
