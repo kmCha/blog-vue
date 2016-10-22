@@ -21,10 +21,6 @@ import ArticleTag from './ArticleTag'
 import ArticleInfo from './ArticleInfo'
 
 export default {
-  data () {
-    return {
-    }
-  },
   computed: {
     imgHTML () {
       let imgMatch = this.article.body.match(/<img[\w\W]*?>/)
@@ -34,8 +30,6 @@ export default {
       let contentMatch = this.article.body.match(/<p>(?!<)[\w\W]*?<\/p>/)
       return contentMatch ? contentMatch[0] : ''
     }
-  },
-  methods: {
   },
   props: ['article', 'article-key'],
   components: {
@@ -74,6 +68,14 @@ export default {
     .article-list-content {
       height: 110px;
       overflow: hidden;
+      p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+        line-height: 1.2rem;
+        text-align: inherit;
+      }
     }
     .article-list-tags {
       height: 70px;
