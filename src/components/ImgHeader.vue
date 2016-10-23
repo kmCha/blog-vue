@@ -36,15 +36,13 @@ export default {
   components: {
     Navigator
   },
-  mounted () {
-    this.$nextTick(() => {
-      if (this.$store.state.partimation) {
-        this.$el.replaceChild(this.$store.state.partimation.canvas, document.querySelector('#canvas'))
-      }
-    })
-  },
   updated () {
     this.$nextTick(() => {
+      this.initializePartimation()
+    })
+  },
+  methods: {
+    initializePartimation () {
       let particle = new Partimate('#canvas')
 
       // 缓存partimation对象，之后回到这个页面的时候展示之前的canvas而不是新的
@@ -73,7 +71,20 @@ export default {
         }
       })
       particle.animate()
-    })
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    if (to.path !== from.path) {
+      next(vm => {
+        if (vm.$store.state.partimation) {
+          vm.$el.replaceChild(vm.$store.state.partimation.canvas, document.querySelector('#canvas'))
+        } else {
+          vm.initializePartimation()
+        }
+      })
+    } else {
+      next()
+    }
   }
 }
 </script>
