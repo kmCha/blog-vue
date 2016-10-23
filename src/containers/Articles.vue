@@ -1,5 +1,6 @@
 <template>
   <div class="articles container" v-if="!loading">
+    <navigator></navigator>
     <div class="page-title">
       <h1>第{{onPage}}页文章</h1>
     </div>
@@ -20,6 +21,7 @@
 import ArticleListItem from '../components/ArticleListItem.vue'
 import { loadingMixin } from '../mixins'
 import { insertDuoshuo, domReady, scrollBodyTo } from '../utils'
+import Navigator from '../components/Navigator'
 
 export default {
   data () {
@@ -40,7 +42,7 @@ export default {
         domReady('.article-list-item').then(() => {
           // 多说评论数
           insertDuoshuo()
-          scrollBodyTo(this.$store.state.windowHeight)
+          scrollBodyTo(0)
         })
       }
     }
@@ -74,7 +76,8 @@ export default {
     })
   },
   components: {
-    ArticleListItem
+    ArticleListItem,
+    Navigator
   },
   mixins: [loadingMixin]
 }

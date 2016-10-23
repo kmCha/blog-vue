@@ -8,8 +8,8 @@
 export default [
   {
     path: '/',
-    component: {
-      template: '<div></div>'
+    component: function (resolve) {
+      require(['../components/ImgHeader'], resolve)
     }
   },
   {

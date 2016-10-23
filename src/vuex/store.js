@@ -11,7 +11,8 @@ var state = {
   loading: true,
   windowWidth: 0,
   windowHeight: 0,
-  headerFixed: false
+  headerFixed: false,
+  partimation: ''
 }
 
 var mutations = {
@@ -42,6 +43,9 @@ var mutations = {
   },
   setPage: (state, page) => {
     state.onPage = page
+  },
+  cachePartimation: (state, partimation) => {
+    state.partimation = partimation
   }
 }
 

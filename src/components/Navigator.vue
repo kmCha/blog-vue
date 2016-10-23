@@ -1,7 +1,8 @@
 <template>
   <transition name="fade">
-    <div class="navigator" v-show="headerFixed">
+    <div class="navigator">
       <div class="link-wrapper">
+        <router-link :to="{ path: '/' }" exact>首页</router-link>
         <router-link :to="{ path: '/articles' }">文章</router-link>
         <router-link :to="{ path: '/categories' }">分类</router-link>
         <router-link :to="{ path: '/achieves' }">归档</router-link>
@@ -24,23 +25,23 @@ export default {
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      window.addEventListener('scroll', e => {
-        if (window.scrollTimer) {
-          window.clearTimeout(window.scrollTimer)
-        }
-        window.scrollTimer = window.setTimeout(() => {
-          let state = this.$store.state
-          let top = document.body.scrollTop
-          if (top < state.windowHeight - 50 && state.headerFixed) {
-            this.$store.commit('unfixHeader')
-          }
-          if (top > state.windowHeight - 50 && !state.headerFixed) {
-            this.$store.commit('fixHeader')
-          }
-        }, 80)
-      }, false)
-    })
+    // this.$nextTick(() => {
+    //   window.addEventListener('scroll', e => {
+    //     if (window.scrollTimer) {
+    //       window.clearTimeout(window.scrollTimer)
+    //     }
+    //     window.scrollTimer = window.setTimeout(() => {
+    //       let state = this.$store.state
+    //       let top = document.body.scrollTop
+    //       if (top < state.windowHeight - 50 && state.headerFixed) {
+    //         this.$store.commit('unfixHeader')
+    //       }
+    //       if (top > state.windowHeight - 50 && !state.headerFixed) {
+    //         this.$store.commit('fixHeader')
+    //       }
+    //     }, 80)
+    //   }, false)
+    // })
   }
 }
 </script>

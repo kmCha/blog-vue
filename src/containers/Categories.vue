@@ -1,17 +1,22 @@
 <template>
-  <div class="categories" v-if="!loading">
+  <div class="categories container" v-if="!loading">
+    <navigator></navigator>
     <h1>敬请期待...</h1>
   </div>
 </template>
 
 <script>
 import { loadingMixin } from '../mixins'
+import Navigator from '../components/Navigator'
 
 export default {
   data () {
     return {
       msg: '分类!'
     }
+  },
+  components: {
+    Navigator
   },
   computed: {
     categories () {

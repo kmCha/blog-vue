@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <loader></loader>
-    <img-header></img-header>
-    <navigator></navigator>
+    <!-- <img-header></img-header> -->
+    <!-- <navigator></navigator> -->
     <transition :name="transitionName">
       <router-view></router-view>
     </transition>
@@ -11,7 +11,6 @@
 
 <script>
 import Loader from './components/Loader.vue'
-import Navigator from './components/Navigator'
 import ImgHeader from './components/ImgHeader'
 import store from './vuex/store'
 
@@ -22,24 +21,23 @@ export default {
     }
   },
   components: {
-    Navigator,
     ImgHeader,
     Loader
   },
   store: store,
   mounted () {
-    let defaultWidth = 1527
-    let defaultSize = 16
-    setFontSize()
-    window.addEventListener('resize', e => {
-      setFontSize()
-    }, false)
-    // 根据窗口大小设置html字体大小，rem响应式
-    function setFontSize () {
-      let windowWidth = window.innerWidth
-      let size = windowWidth / defaultWidth * defaultSize
-      document.documentElement.style.fontSize = size + 'px'
-    }
+    // let defaultWidth = 1527
+    // let defaultSize = 16
+    // setFontSize()
+    // window.addEventListener('resize', e => {
+    //   setFontSize()
+    // }, false)
+    // // 根据窗口大小设置html字体大小，rem响应式
+    // function setFontSize () {
+    //   let windowWidth = window.innerWidth
+    //   let size = windowWidth / defaultWidth * defaultSize
+    //   document.documentElement.style.fontSize = size + 'px'
+    // }
     // 设置全局window尺寸
     store.commit('setWindowSize', {
       height: window.innerHeight,
@@ -80,10 +78,10 @@ body {
     width: 100%;
   }
   .container {
-    padding: 2rem 20rem;
+    padding: 2.8rem 20rem;
     @media (max-width: 1140px) {
       max-width: calc(1140px - 40rem);
-      padding: 2rem 0;
+      padding: 2.8rem 0;
       margin: 0 auto;
     }
   }

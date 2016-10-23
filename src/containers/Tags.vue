@@ -1,17 +1,22 @@
 <template>
-  <div class="tags" v-if="!loading">
+  <div class="tags container" v-if="!loading">
+    <navigator></navigator>
     <h1>敬请期待...</h1>
   </div>
 </template>
 
 <script>
 import { loadingMixin } from '../mixins'
+import Navigator from '../components/Navigator'
 
 export default {
   data () {
     return {
       msg: '标签!'
     }
+  },
+  components: {
+    Navigator
   },
   computed: {
     count () {
@@ -22,8 +27,6 @@ export default {
     inc () {
       this.$store.commit('inc')
     }
-  },
-  components: {
   },
   mixins: [loadingMixin]
 }

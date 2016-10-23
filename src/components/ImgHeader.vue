@@ -36,9 +36,20 @@ export default {
   components: {
     Navigator
   },
+  mounted () {
+    this.$nextTick(() => {
+      if (this.$store.state.partimation) {
+        this.$el.replaceChild(this.$store.state.partimation.canvas, document.querySelector('#canvas'))
+      }
+    })
+  },
   updated () {
     this.$nextTick(() => {
       let particle = new Partimate('#canvas')
+
+      // 缓存partimation对象，之后回到这个页面的时候展示之前的canvas而不是新的
+      this.$store.commit('cachePartimation', particle)
+
       particle.imageConfig({ // 同canvas.context.drawImage() API的9个参数
         imgUrl: '/public/blog-title.png',
         cover: true
