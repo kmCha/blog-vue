@@ -113,7 +113,7 @@ export default {
         // color: #dcc6a1;
         // border-color: #dcc6a1;
         transition: all 0.3s ease;
-        &:hover {
+        &:hover, &.router-link-active {
           color: #79bbb9;
           border-color: #79bbb9;
         }
@@ -122,7 +122,7 @@ export default {
         // color: #c6c7a5;
         // border-color: #c6c7a5;
         transition: all 0.3s ease;
-        &:hover {
+        &:hover, &.router-link-active {
           color: #b3699c;
           border-color: #b3699c;
         }
@@ -131,7 +131,7 @@ export default {
         // color: #a1bdaf;
         // border-color: #a1bdaf;
         transition: all .3s ease;
-        &:hover {
+        &:hover, &.router-link-active {
           color: #80a357;
           border-color: #80a357;
         }
@@ -140,7 +140,7 @@ export default {
         // color: #baabbe;
         // border-color: #baabbe;
         transition: all .3s ease;
-        &:hover {
+        &:hover, &.router-link-active {
           color: #a7845a;
           border-color: #a7845a;
         }

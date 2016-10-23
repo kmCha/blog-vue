@@ -70,7 +70,7 @@ export default {
       transition: 0.2s ease all;
       color: $navigator-color;
       text-decoration: none;
-      &:hover {
+      &:hover, &.router-link-active {
         color: $primary-color;
       }
     }
