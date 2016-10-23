@@ -86,9 +86,10 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-direction: column;*/
+  margin-top: 2rem;
   .title {
     text-align: center;
-    margin-bottom: 5rem;
+    margin: 5rem 0;
     h1 {
       color: $title-color;
     }

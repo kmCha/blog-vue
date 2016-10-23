@@ -79,6 +79,7 @@ body {
   }
   .container {
     padding: 2.8rem 20rem;
+    margin-top: 1rem;
     @media (max-width: 1140px) {
       max-width: calc(1140px - 40rem);
       padding: 2.8rem 0;
