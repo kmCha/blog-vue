@@ -77,12 +77,13 @@ body {
     justify-content: center;
   }
   .container {
-    padding: 2.8rem 0;
+    padding: 2.8rem 2rem;
     margin: 1rem auto;
-    width: 1000px;
-    @media (max-width: 1000px) {
-      max-width: 1000px;
-      margin: 1rem 1rem;
+    max-width: 1000px;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 1000px) {
+      max-width: 100%;
     }
   }
   a {
