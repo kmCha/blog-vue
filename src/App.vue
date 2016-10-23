@@ -68,22 +68,21 @@ html {
   font-family: "Arial","LiHei Pro Medium","Microsoft YaHei","黑体","宋体",sans-serif;
 }
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // padding-top: 50px;
   margin: 0;
   #app {
     color: $font-color;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .container {
-    padding: 2.8rem 20rem;
-    margin-top: 1rem;
-    @media (max-width: 1140px) {
-      max-width: calc(1140px - 40rem);
-      padding: 2.8rem 0;
-      margin: 0 auto;
+    padding: 2.8rem 0;
+    margin: 1rem auto;
+    width: 1000px;
+    @media (max-width: 1000px) {
+      max-width: 1000px;
+      margin: 1rem 1rem;
     }
   }
   a {
