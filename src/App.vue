@@ -72,9 +72,6 @@ body {
   #app {
     color: $font-color;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   .container {
     padding: 2.8rem 2rem;
