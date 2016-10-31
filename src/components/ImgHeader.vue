@@ -3,6 +3,9 @@
     <canvas id="canvas" :width="width" :height="height">
       “纠西的博客”
     </canvas>
+    <a class="canvas-replay" href="javascript:void(0)" v-if="partimationDone" @click="replayPartimation">
+      <i class="iconfont icon-playfill"></i>重播
+    </a>
     <div class="link-wrapper">
       <router-link :to="{ path: '/articles' }">文章</router-link>
       <router-link :to="{ path: '/categories' }">分类</router-link>
@@ -31,6 +34,9 @@ export default {
     },
     style () {
       return 'height: ' + this.$store.state.windowHeight + ';'
+    },
+    partimationDone () {
+      return this.$store.state.partimationAnimationDone
     }
   },
   components: {
@@ -65,7 +71,16 @@ export default {
           return parseInt(Math.random() * 500)
         }
       })
-      particle.animate()
+      particle.animate().then(() => {
+        this.$store.commit('setPartimationStatus', 'done')
+      })
+    },
+    replayPartimation () {
+      this.$store.commit('setPartimationStatus', 'replay')
+      let particle = this.$store.state.partimation
+      particle.animate().then(() => {
+        this.$store.commit('setPartimationStatus', 'done')
+      })
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -96,6 +111,16 @@ export default {
   // background-position: center;
   // background-size: cover;
   background-color: #fff;
+  .canvas-replay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    padding: 10px 20px;
+    margin: 20px 10px;
+    text-decoration: none;
+    color: #555;
+  }
   #canvas {
     width: 100%;
     height: 100%;

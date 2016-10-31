@@ -1,8 +1,8 @@
 <template>
   <div class="article-info">
-    <span><i class="iconfont icon-shijian5"></i>{{date}}</span>
-    <span><i class="iconfont icon-liebiao3"></i>{{category}}</span>
-    <i class="iconfont icon-pinglun"></i><span class="ds-thread-count" :data-thread-key="articleKey" data-count-type="comments">暂无评论</span>
+    <span><i class="iconfont icon-calendar"></i>{{date}}</span>
+    <span><i class="iconfont icon-sort"></i>{{category}}</span>
+    <i class="iconfont icon-message"></i><span class="ds-thread-count" :data-thread-key="articleKey" data-count-type="comments">暂无评论</span>
   </div>
 </template>
 

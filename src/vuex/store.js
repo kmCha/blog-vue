@@ -13,7 +13,8 @@ var state = {
   windowHeight: 0,
   headerFixed: false,
   partimation: '',
-  headerHidden: false
+  headerHidden: false,
+  partimationAnimationDone: false
 }
 
 var mutations = {
@@ -53,6 +54,13 @@ var mutations = {
   },
   showNav: state => {
     state.headerHidden = false
+  },
+  setPartimationStatus: (state, status) => {
+    if (status === 'done') {
+      state.partimationAnimationDone = true
+    } else {
+      state.partimationAnimationDone = false
+    }
   }
 }
 
