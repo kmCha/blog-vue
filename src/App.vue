@@ -3,7 +3,7 @@
     <loader></loader>
     <!-- <img-header></img-header> -->
     <!-- <navigator></navigator> -->
-    <transition :name="transitionName">
+    <transition :name="transitionName" mode="out-in">
       <router-view></router-view>
     </transition>
   </div>
