@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <loader></loader>
-    <!-- <img-header></img-header> -->
-    <!-- <navigator></navigator> -->
+    <navigator></navigator>
     <transition :name="transitionName" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -11,8 +10,8 @@
 
 <script>
 import Loader from './components/Loader.vue'
-import ImgHeader from './components/ImgHeader'
 import store from './vuex/store'
+import Navigator from './components/Navigator'
 
 export default {
   data () {
@@ -21,8 +20,8 @@ export default {
     }
   },
   components: {
-    ImgHeader,
-    Loader
+    Loader,
+    Navigator
   },
   store: store,
   mounted () {
@@ -38,11 +37,13 @@ export default {
     //   let size = windowWidth / defaultWidth * defaultSize
     //   document.documentElement.style.fontSize = size + 'px'
     // }
+
     // 设置全局window尺寸
     store.commit('setWindowSize', {
       height: window.innerHeight,
       width: window.innerWidth
     })
+
     // 获取articles、tags、categories
     if (!store.state.articles || !store.state.categories || !store.state.tags) {
       store.commit('startLoading')

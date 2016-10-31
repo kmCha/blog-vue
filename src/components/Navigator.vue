@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="navigator">
+    <div class="navigator" v-if="!hide">
       <div class="link-wrapper">
         <router-link :to="{ path: '/' }" exact>首页</router-link>
         <router-link :to="{ path: '/articles' }">文章</router-link>
@@ -22,6 +22,9 @@ export default {
   computed: {
     headerFixed () {
       return this.$store.state.headerFixed
+    },
+    hide () {
+      return this.$store.state.headerHidden
     }
   },
   mounted () {

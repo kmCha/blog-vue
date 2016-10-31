@@ -12,7 +12,8 @@ var state = {
   windowWidth: 0,
   windowHeight: 0,
   headerFixed: false,
-  partimation: ''
+  partimation: '',
+  headerHidden: false
 }
 
 var mutations = {
@@ -46,6 +47,12 @@ var mutations = {
   },
   cachePartimation: (state, partimation) => {
     state.partimation = partimation
+  },
+  hideNav: state => {
+    state.headerHidden = true
+  },
+  showNav: state => {
+    state.headerHidden = false
   }
 }
 

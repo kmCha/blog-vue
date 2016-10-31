@@ -36,11 +36,6 @@ export default {
   components: {
     Navigator
   },
-  updated () {
-    this.$nextTick(() => {
-      this.initializePartimation()
-    })
-  },
   methods: {
     initializePartimation () {
       let particle = new Partimate('#canvas')
@@ -74,17 +69,19 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-    if (to.path !== from.path) {
-      next(vm => {
-        if (vm.$store.state.partimation) {
-          vm.$el.replaceChild(vm.$store.state.partimation.canvas, document.querySelector('#canvas'))
-        } else {
-          vm.initializePartimation()
-        }
-      })
-    } else {
-      next()
-    }
+    next(vm => {
+      if (vm.$store.state.partimation) {
+        vm.$el.replaceChild(vm.$store.state.partimation.canvas, document.querySelector('#canvas'))
+      } else {
+        vm.initializePartimation()
+      }
+    })
+  },
+  beforeMount () {
+    this.$store.commit('hideNav')
+  },
+  beforeDestroy () {
+    this.$store.commit('showNav')
   }
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div class="category container" v-if="!$loading">
-    <navigator></navigator>
     <div v-for="(article, key) in articles">
       <router-link :to="{ path: '/articles/' + key }">{{article.date.substr(0,10)}} - {{article.title}}</router-link>
     </div>
@@ -9,16 +8,12 @@
 
 <script>
 import { loadingMixin } from '../mixins'
-import Navigator from '../components/Navigator'
 
 export default {
   data () {
     return {
       categoryKey: ''
     }
-  },
-  components: {
-    Navigator
   },
   computed: {
     articles () {

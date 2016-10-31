@@ -1,22 +1,17 @@
 <template>
   <div class="achieves container" v-if="!loading">
-    <navigator></navigator>
     <h1>敬请期待...</h1>
   </div>
 </template>
 
 <script>
 import { loadingMixin } from '../mixins'
-import Navigator from '../components/Navigator'
 
 export default {
   data () {
     return {
       msg: '归档!'
     }
-  },
-  components: {
-    Navigator
   },
   computed: {
     count () {

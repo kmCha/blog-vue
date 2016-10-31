@@ -1,6 +1,5 @@
 <template>
   <div class="article container" v-if="!loading">
-    <navigator></navigator>
     <div class="title">
       <h1>{{ article.title }}</h1>
       <article-info :date="article.date.substr(0,10)" :category="article.categories" :article-key="articleKey"></article-info>
@@ -15,7 +14,6 @@ import { loadingMixin } from '../mixins'
 import domReady from '../utils/domReady'
 import insertDuoshuo from '../utils/duoshuo'
 import ArticleInfo from '../components/ArticleInfo'
-import Navigator from '../components/Navigator'
 
 export default {
   data () {
@@ -67,8 +65,7 @@ export default {
     })
   },
   components: {
-    ArticleInfo,
-    Navigator
+    ArticleInfo
   },
   mixins: [loadingMixin]
 }

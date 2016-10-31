@@ -1,22 +1,17 @@
 <template>
   <div class="categories container" v-if="!loading">
-    <navigator></navigator>
     <el-tree :data="categories" @node-click="handleClick"></el-tree>
   </div>
 </template>
 
 <script>
 import { loadingMixin } from '../mixins'
-import Navigator from '../components/Navigator'
 
 export default {
   data () {
     return {
       msg: '分类!'
     }
-  },
-  components: {
-    Navigator
   },
   computed: {
     categories () {
