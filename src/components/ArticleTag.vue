@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{ path: '/tags/' + name }" class="article-tag" :style="backgroundColor">
+    <router-link :to="{ path: '/tags' }" class="article-tag" :style="backgroundColor">
       {{name}}
     </router-link>
   </div>

@@ -1,7 +1,16 @@
 <template>
   <div class="tags container" v-if="!loading">
     <div class="tag-wrapper">
-      <article-tag v-for="( tag, tagName ) in tags" :name="tagName"></article-tag>
+      <el-dropdown v-for="( tag, tagName ) in tags">
+        <article-tag :name="tagName"></article-tag>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item v-for="articleKey in tag.articles">
+            <router-link class="dropdown-item-link" :to="{path: '/articles/' + articleKey}">
+              {{getArticleName(articleKey)}}
+            </router-link>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -21,8 +30,10 @@ export default {
       return this.$store.state.tags
     }
   },
-  mounted () {
-
+  methods: {
+    getArticleName (key) {
+      return this.$store.state.articles ? this.$store.state.articles[key].title : ''
+    }
   },
   mixins: [loadingMixin],
   components: {
@@ -32,24 +43,23 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../variables/index.scss";
 
 .tags {
   text-align: center;
-}
-.tag-wrapper {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  div {
-    margin: 10px 0;
+  .tag-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    div {
+      margin: 10px 0;
+    }
   }
+}
+.dropdown-item-link {
+  display: block;
+  text-decoration: none;
 }
 </style>
