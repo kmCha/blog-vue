@@ -23,7 +23,9 @@ export default {
   },
   computed: {
     article () {
-      return this.$store.state.articles[this.articleKey] || {date: ''}
+      return this.$store.state.articles.find((item) => {
+        return this.articleKey === item.key
+      }).article || {date: ''}
     }
   },
   methods: {

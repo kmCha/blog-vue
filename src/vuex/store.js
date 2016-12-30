@@ -70,7 +70,15 @@ var actions = {
       orderBy: '"date"',
       limitToLast: 100
     }).then(res => {
-      commit('setArticles', res.body)
+      let articlesObj = res.body
+      let articlesArr = []
+      for (let key in articlesObj) {
+        articlesArr.push({
+          key,
+          article: articlesObj[key]
+        })
+      }
+      commit('setArticles', articlesArr.reverse())
     })
   },
   getCategories: ({commit}) => {

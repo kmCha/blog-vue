@@ -24,7 +24,7 @@ export default {
           children: children.map(articleKey => {
             return {
               key: articleKey,
-              label: this.$store.state.articles[articleKey].title
+              label: this.$store.state.articles.find(item => item.key === articleKey).article.title
             }
           })
         })

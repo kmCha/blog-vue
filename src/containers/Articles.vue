@@ -3,8 +3,8 @@
     <div class="page-title">
       <h1>第{{onPage}}页文章</h1>
     </div>
-      <div v-for="(article, key) in articles" :key="key">
-        <article-list-item :article="article" :article-key="key"></article-list-item>
+      <div v-for="item in articles" :key="item.key">
+        <article-list-item :article="item.article" :article-key="item.key"></article-list-item>
       </div>
     <div class="page-selector">
       <div class="page-selector-wrapper">
@@ -47,16 +47,9 @@ export default {
   },
   computed: {
     articles () {
-      let articles = this.$store.state.articles
-      let articlesToShow = {}
-      let count = 0
-      for (let key in articles) {
-        if (count < this.onPage * this.numsPerPage && count >= (this.onPage - 1) * this.numsPerPage) {
-          articlesToShow[key] = articles[key]
-        }
-        count++
-      }
-      return articlesToShow
+      return this.$store.state.articles.filter((item, index) => {
+        return index < this.onPage * this.numsPerPage && index >= (this.onPage - 1) * this.numsPerPage
+      })
     },
     numOfPages () {
       return Math.ceil(this.$store.getters.articlesLength / this.numsPerPage)

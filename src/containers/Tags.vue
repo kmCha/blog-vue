@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getArticleName (key) {
-      return this.$store.state.articles ? this.$store.state.articles[key].title : ''
+      return this.$store.state.articles ? this.$store.state.articles.find(item => item.key === key).article.title : ''
     }
   },
   mixins: [loadingMixin],
