@@ -48,6 +48,10 @@ export default {
 
 .tags {
   text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .tag-wrapper {
     display: flex;
     align-items: center;

@@ -67,12 +67,15 @@ export default {
 html {
   font-size: 16px;
   font-family: "Arial","LiHei Pro Medium","Microsoft YaHei","黑体","宋体",sans-serif;
+  height: 100%;
 }
 body {
   margin: 0;
+  height: 100%;
   #app {
     color: $font-color;
     width: 100%;
+    height: 100%;
   }
   .container {
     padding: 2.8rem 2rem;
