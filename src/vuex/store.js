@@ -78,7 +78,7 @@ var actions = {
           article: articlesObj[key]
         })
       }
-      commit('setArticles', articlesArr.reverse())
+      commit('setArticles', articlesArr)
     })
   },
   getCategories: ({commit}) => {
