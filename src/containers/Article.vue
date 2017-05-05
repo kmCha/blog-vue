@@ -43,6 +43,13 @@ export default {
   created () {
     this.articleKey = this.$route.params.key
   },
+  watch: {
+    '$route' (to, from) {
+      if (to.params.key) {
+        this.articleKey = to.params.key
+      }
+    }
+  },
   mounted () {
     this.$nextTick(() => {
       // 循环查询直到能访问到DOM，再加上代码高亮和图片居中等
