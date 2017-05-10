@@ -1,21 +1,29 @@
 <template>
   <div class="img-header">
-    <div class="articles-wrapper" v-show="$store.state.activeTab == 'articles'">
-      <div class="content"></div>
-      <router-link :to="{ path: '/articles' }">>>点击进入</router-link>
-    </div>
-    <div class="categories-wrapper" v-show="$store.state.activeTab == 'categories'">
-      <div class="content"></div>
-      <router-link :to="{ path: '/categories' }">>>点击进入</router-link>
-    </div>
-    <div class="achieves-wrapper" v-show="$store.state.activeTab == 'achieves'">
-      <div class="content"></div>
-      <router-link :to="{ path: '/achieves' }">>>点击进入</router-link>
-    </div>
-    <div class="tags-wrapper" v-show="$store.state.activeTab == 'tags'">
-      <div class="content"></div>
-      <router-link :to="{ path: '/tags' }">>>点击进入</router-link>
-    </div>
+    <transition name="switch">
+      <div class="articles-wrapper" v-show="$store.state.activeTab == 'articles'">
+        <div class="content"></div>
+        <router-link :to="{ path: '/articles' }">>>点击进入</router-link>
+      </div>
+    </transition>
+    <transition name="switch">
+      <div class="categories-wrapper" v-show="$store.state.activeTab == 'categories'">
+        <div class="content"></div>
+        <router-link :to="{ path: '/categories' }">>>点击进入</router-link>
+      </div>
+    </transition>
+    <transition name="switch">
+      <div class="achieves-wrapper" v-show="$store.state.activeTab == 'achieves'">
+        <div class="content"></div>
+        <router-link :to="{ path: '/achieves' }">>>点击进入</router-link>
+      </div>
+    </transition>
+    <transition name="switch">
+      <div class="tags-wrapper" v-show="$store.state.activeTab == 'tags'">
+        <div class="content"></div>
+        <router-link :to="{ path: '/tags' }">>>点击进入</router-link>
+      </div>
+    </transition>
     <div class="tab-wrapper">
       <span :class="[$store.state.activeTab == 'articles' ? 'active' : '']" @click="transformTo('articles')">文章</span>
       <span :class="[$store.state.activeTab == 'categories' ? 'active' : '']" @click="transformTo('categories')">分类</span>
@@ -78,6 +86,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.switch-enter-active, .switch-leave-active {
+  transition: opacity 1.5s, filter 2s .5s;
+  transition: opacity 1.5s, -webkit-filter 2s .5s;
+  filter: blur(0);
+  -webkit-filter: blur(0);
+}
+.switch-enter, .switch-leave-active {
+  opacity: 0;
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+}
 .img-header {
   position: relative;
   width: 100%;
