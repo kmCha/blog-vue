@@ -1,11 +1,5 @@
 <template>
   <div class="img-header" :style="style">
-    <canvas id="canvas" :width="width" :height="height">
-      “纠西的博客”
-    </canvas>
-    <a class="canvas-replay" href="javascript:void(0)" v-if="partimationDone" @click="replayPartimation">
-      <i class="iconfont icon-playfill"></i>重播
-    </a>
     <div class="link-wrapper">
       <router-link :to="{ path: '/articles' }">文章</router-link>
       <router-link :to="{ path: '/categories' }">分类</router-link>
@@ -17,7 +11,7 @@
 
 <script>
 import Navigator from './Navigator.vue'
-import Partimate from 'partimation'
+import particle from '../utils/three-particle.js'
 
 export default {
   data () {
@@ -43,60 +37,21 @@ export default {
     Navigator
   },
   methods: {
-    initializePartimation () {
-      let particle = new Partimate('#canvas')
-
-      // 缓存partimation对象，之后回到这个页面的时候展示之前的canvas而不是新的
-      this.$store.commit('cachePartimation', particle)
-
-      particle.imageConfig({ // 同canvas.context.drawImage() API的9个参数
-        imgUrl: '/public/blog-title.png',
-        cover: true
-      })
-      particle.animationConfig({
-        totalFrame: 500, // 动画总时间，默认500帧
-        cols: 500,
-        rows: 300,
-        animationType: 'easeOutElastic',
-        blur: function (r, g, b, a) {
-          if (r < 20 && g < 20 && b < 20 && a > 0) {
-            return 0
-          }
-          return 10
-        },
-        filter: function (r, g, b, a) { // 像素filter，滤出rgba满足条件的像素
-          return (g > 180 || r > 200 || b > 200) && a > 0
-        },
-        delay: function (index) { // particle动画执行延时，输入参数为该粒子在particles数组里的index
-          return parseInt(Math.random() * 500)
-        }
-      })
-      particle.animate().then(() => {
-        this.$store.commit('setPartimationStatus', 'done')
-      })
-    },
-    replayPartimation () {
-      this.$store.commit('setPartimationStatus', 'replay')
-      let particle = this.$store.state.partimation
-      particle.animate().then(() => {
-        this.$store.commit('setPartimationStatus', 'done')
-      })
-    }
   },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      if (vm.$store.state.partimation) {
-        vm.$el.replaceChild(vm.$store.state.partimation.canvas, document.querySelector('#canvas'))
-      } else {
-        vm.initializePartimation()
-      }
-    })
+  mounted () {
+    if (this.$store.state.partimation) {
+      document.querySelector('.img-header').appendChild(this.$store.state.partimation)
+      particle.render()
+    } else {
+      this.$store.commit('cachePartimation', particle.init('.img-header'))
+    }
   },
   beforeMount () {
     this.$store.commit('hideNav')
   },
   beforeDestroy () {
     this.$store.commit('showNav')
+    particle.stopRender()
   }
 }
 </script>
