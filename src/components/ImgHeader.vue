@@ -1,6 +1,9 @@
 <template>
   <div class="img-header">
     <transition name="switch">
+      <div class="blog-title" v-show="$store.state.activeTab == 'main'"></div>
+    </transition>
+    <transition name="switch">
       <div class="articles-wrapper" v-show="$store.state.activeTab == 'articles'">
         <div class="content"></div>
         <router-link :to="{ path: '/articles' }">>>点击进入</router-link>
@@ -40,7 +43,6 @@ import particle from '../utils/three-particle.js'
 export default {
   data () {
     return {
-      activeTab: ''
     }
   },
   computed: {
@@ -72,6 +74,9 @@ export default {
       particle.render()
     } else {
       this.$store.commit('cachePartimation', particle.init('.img-header'))
+      setTimeout(() => {
+        this.$store.commit('changeActiveTab', 'main')
+      }, 3500)
     }
   },
   beforeMount () {
@@ -128,6 +133,15 @@ export default {
         background-color: #fff;
       }
     }
+  }
+  .blog-title {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    width: 503px;
+    height: 157px;
+    background-image: url('/public/assets/blog.png');
+    background-size: 100% 100%;
   }
   .articles-wrapper {
     position: absolute;
