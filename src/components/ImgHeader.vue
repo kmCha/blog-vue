@@ -157,7 +157,7 @@ export default {
     top: 10%;
     width: 503px;
     height: 157px;
-    background-image: url('/public/assets/blog.png');
+    background-image: url('../assets/imgs/blog.png');
     background-size: 100% 100%;
   }
   .articles-wrapper {
@@ -167,7 +167,7 @@ export default {
     .content {
         width: 318px;
         height: 75px;
-        background-image: url('/public/assets/articles.png');
+        background-image: url('../assets/imgs/articles.png');
         background-size: 100% 100%;
     }
     a {
@@ -183,7 +183,7 @@ export default {
     .content {
         width: 456.3px;
         height: 96px;
-        background-image: url('/public/assets/categories.png');
+        background-image: url('../assets/imgs/categories.png');
         background-size: 100% 100%;
     }
     a {
@@ -200,7 +200,7 @@ export default {
     .content {
         width: 370px;
         height: 75px;
-        background-image: url('/public/assets/achieves.png');
+        background-image: url('../assets/imgs/achieves.png');
         background-size: 100% 100%;
     }
     a {
@@ -216,7 +216,7 @@ export default {
     .content {
         width: 193.6px;
         height: 92px;
-        background-image: url('/public/assets/tags.png');
+        background-image: url('../assets/imgs/tags.png');
         background-size: 100% 100%;
     }
     a {
