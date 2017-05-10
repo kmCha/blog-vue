@@ -1,26 +1,26 @@
 <template>
   <div class="img-header">
-    <div class="articles-wrapper" v-show="activeTab == 'articles'">
+    <div class="articles-wrapper" v-show="$store.state.activeTab == 'articles'">
       <div class="content"></div>
       <router-link :to="{ path: '/articles' }">>>点击进入</router-link>
     </div>
-    <div class="categories-wrapper" v-show="activeTab == 'categories'">
+    <div class="categories-wrapper" v-show="$store.state.activeTab == 'categories'">
       <div class="content"></div>
       <router-link :to="{ path: '/categories' }">>>点击进入</router-link>
     </div>
-    <div class="achieves-wrapper" v-show="activeTab == 'achieves'">
+    <div class="achieves-wrapper" v-show="$store.state.activeTab == 'achieves'">
       <div class="content"></div>
       <router-link :to="{ path: '/achieves' }">>>点击进入</router-link>
     </div>
-    <div class="tags-wrapper" v-show="activeTab == 'tags'">
+    <div class="tags-wrapper" v-show="$store.state.activeTab == 'tags'">
       <div class="content"></div>
       <router-link :to="{ path: '/tags' }">>>点击进入</router-link>
     </div>
     <div class="tab-wrapper">
-      <span :class="[activeTab == 'articles' ? 'active' : '']" @click="transformTo('articles')">文章</span>
-      <span :class="[activeTab == 'categories' ? 'active' : '']" @click="transformTo('categories')">分类</span>
-      <span :class="[activeTab == 'achieves' ? 'active' : '']" @click="transformTo('achieves')">归档</span>
-      <span :class="[activeTab == 'tags' ? 'active' : '']" @click="transformTo('tags')">标签</span>
+      <span :class="[$store.state.activeTab == 'articles' ? 'active' : '']" @click="transformTo('articles')">文章</span>
+      <span :class="[$store.state.activeTab == 'categories' ? 'active' : '']" @click="transformTo('categories')">分类</span>
+      <span :class="[$store.state.activeTab == 'achieves' ? 'active' : '']" @click="transformTo('achieves')">归档</span>
+      <span :class="[$store.state.activeTab == 'tags' ? 'active' : '']" @click="transformTo('tags')">标签</span>
     </div>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
   methods: {
     transformTo (type) {
       particle.transformTo(type)
-      this.activeTab = type
+      this.$store.commit('changeActiveTab', type)
     }
   },
   mounted () {

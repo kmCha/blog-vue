@@ -14,7 +14,8 @@ var state = {
   headerFixed: false,
   partimation: '',
   headerHidden: false,
-  partimationAnimationDone: false
+  partimationAnimationDone: false,
+  activeTab: ''
 }
 
 var mutations = {
@@ -61,6 +62,9 @@ var mutations = {
     } else {
       state.partimationAnimationDone = false
     }
+  },
+  changeActiveTab: (state, type) => {
+    state.activeTab = type
   }
 }
 
