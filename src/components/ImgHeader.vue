@@ -1,10 +1,25 @@
 <template>
-  <div class="img-header" :style="style">
-    <div class="link-wrapper">
+  <div class="img-header">
+    <div class="articles-wrapper">
       <router-link :to="{ path: '/articles' }">文章</router-link>
+    </div>
+    <div class="categories-wrapper">
+
       <router-link :to="{ path: '/categories' }">分类</router-link>
+    </div>
+    <div class="achieves-wrapper">
+
       <router-link :to="{ path: '/achieves' }">归档</router-link>
+    </div>
+    <div class="tags-wrapper">
+
       <router-link :to="{ path: '/tags' }">标签</router-link>
+    </div>
+    <div class="tab-wrapper">
+      <span :class="[activeTab == 'articles' ? 'active' : '']" @click="transformTo('articles')">文章</span>
+      <span :class="[activeTab == 'categories' ? 'active' : '']" @click="transformTo('categories')">分类</span>
+      <span :class="[activeTab == 'achieves' ? 'active' : '']" @click="transformTo('achieves')">归档</span>
+      <span :class="[activeTab == 'tags' ? 'active' : '']" @click="transformTo('tags')">标签</span>
     </div>
   </div>
 </template>
@@ -16,7 +31,7 @@ import particle from '../utils/three-particle.js'
 export default {
   data () {
     return {
-
+      activeTab: ''
     }
   },
   computed: {
@@ -37,6 +52,10 @@ export default {
     Navigator
   },
   methods: {
+    transformTo (type) {
+      particle.transformTo(type)
+      this.activeTab = type
+    }
   },
   mounted () {
     if (this.$store.state.partimation) {
@@ -61,37 +80,10 @@ export default {
 .img-header {
   position: relative;
   width: 100%;
-  // background-image: url(http://7xoxzw.com1.z0.glb.clouddn.com/walt_disney_dreams_pursue_typography_3000x2000-2015-12-01-0203.jpg);
-  // background-repeat: no-repeat;
-  // background-position: center;
-  // background-size: cover;
-  background-color: #fff;
-  .canvas-replay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    padding: 10px 20px;
-    margin: 20px 10px;
-    text-decoration: none;
-    color: #555;
-  }
-  #canvas {
-    width: 100%;
-    height: 100%;
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-  }
-  // .site-title {
-  //   color: #fff;
-  //   font-size: 50px;
-  //   position: absolute;
-  //   left: 50%;
-  //   top: 15%;
-  //   transform: translateX(-50%);
-  // }
-  .link-wrapper {
+  height: 100%;
+  background-color: #000;
+
+  .tab-wrapper {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -100,51 +92,41 @@ export default {
     text-align: right;
     box-sizing: border-box;
     padding-right: 50px;
-    a {
+    span {
       display: inline-block;
       padding: 10px 20px;
-      border: 1px #555 solid;
+      border: 1px #fff solid;
       border-radius: 0.5rem;
       margin: 20px 10px;
       text-decoration: none;
-      color: #555;
-      &:nth-child(1) {
-        // color: #dcc6a1;
-        // border-color: #dcc6a1;
-        transition: all 0.3s ease;
-        &:hover, &.router-link-active {
-          color: #79bbb9;
-          border-color: #79bbb9;
-        }
-      }
-      &:nth-child(2) {
-        // color: #c6c7a5;
-        // border-color: #c6c7a5;
-        transition: all 0.3s ease;
-        &:hover, &.router-link-active {
-          color: #b3699c;
-          border-color: #b3699c;
-        }
-      }
-      &:nth-child(3) {
-        // color: #a1bdaf;
-        // border-color: #a1bdaf;
-        transition: all .3s ease;
-        &:hover, &.router-link-active {
-          color: #80a357;
-          border-color: #80a357;
-        }
-      }
-      &:nth-child(4) {
-        // color: #baabbe;
-        // border-color: #baabbe;
-        transition: all .3s ease;
-        &:hover, &.router-link-active {
-          color: #a7845a;
-          border-color: #a7845a;
-        }
+      color: #fff;
+      cursor: pointer;
+      &.active {
+        border: 1px #000 solid;
+        color: #000;
+        background-color: #fff;
       }
     }
+  }
+  .articles-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .categories-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .achieves-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .tags-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 </style>

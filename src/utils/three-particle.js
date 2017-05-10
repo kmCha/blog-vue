@@ -283,7 +283,7 @@ function loadModels(callback) {
         }
     });
 
-    loader.load("public/assets/iron-man.json", function (geo, mat) {
+    loader.load("public/assets/air-craft.json", function (geo, mat) {
         achievesGeo = geo;
         geos.achieves = achievesGeo;
         if (++counter === NUM_OF_MODELS) {
@@ -299,7 +299,7 @@ function loadModels(callback) {
         }
     });
 
-    loader.load("public/assets/air-craft.json", function (geo, mat) {
+    loader.load("public/assets/iron-man.json", function (geo, mat) {
         tagsGeo = geo;
         geos.tags = tagsGeo;
         if (++counter === NUM_OF_MODELS) {

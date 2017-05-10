@@ -68,6 +68,7 @@ html {
   font-size: 16px;
   font-family: "Arial","LiHei Pro Medium","Microsoft YaHei","黑体","宋体",sans-serif;
   height: 100%;
+  margin: 0;
 }
 body {
   margin: 0;
