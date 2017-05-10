@@ -39,10 +39,12 @@
 <script>
 import Navigator from './Navigator.vue'
 import particle from '../utils/three-particle.js'
+import { loadingMixin } from '../mixins'
 
 export default {
   data () {
     return {
+      initiated: false
     }
   },
   computed: {
@@ -68,15 +70,29 @@ export default {
       this.$store.commit('changeActiveTab', type)
     }
   },
+  watch: {
+    loading (value, oldValue) {
+      if (!this.initiated) {
+        this.initiated = true
+        this.$store.commit('cachePartimation', particle.init('.img-header'))
+        setTimeout(() => {
+          this.$store.commit('changeActiveTab', 'main')
+        }, 3500)
+      }
+    }
+  },
   mounted () {
     if (this.$store.state.partimation) {
       document.querySelector('.img-header').appendChild(this.$store.state.partimation)
       particle.render()
     } else {
-      this.$store.commit('cachePartimation', particle.init('.img-header'))
-      setTimeout(() => {
-        this.$store.commit('changeActiveTab', 'main')
-      }, 3500)
+      if (!this.loading && !this.initiated) {
+        this.$store.commit('cachePartimation', particle.init('.img-header'))
+        setTimeout(() => {
+          this.$store.commit('changeActiveTab', 'main')
+        }, 3500)
+        this.initiated = true
+      }
     }
   },
   beforeMount () {
@@ -85,7 +101,8 @@ export default {
   beforeDestroy () {
     this.$store.commit('showNav')
     particle.stopRender()
-  }
+  },
+  mixins: [loadingMixin]
 }
 </script>
 
