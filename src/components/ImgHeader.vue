@@ -155,10 +155,12 @@ export default {
     position: absolute;
     left: 5%;
     top: 10%;
-    width: 503px;
-    height: 157px;
+    width: 25%;
+    max-width: 503px;
+    height: 40%;
     background-image: url('../assets/imgs/blog.png');
-    background-size: 100% 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
   }
   .articles-wrapper {
     position: absolute;
