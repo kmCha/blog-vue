@@ -1,19 +1,20 @@
 <template>
   <div class="img-header">
-    <div class="articles-wrapper">
-      <router-link :to="{ path: '/articles' }">文章</router-link>
+    <div class="articles-wrapper" v-show="activeTab == 'articles'">
+      <div class="content"></div>
+      <router-link :to="{ path: '/articles' }">>>点击进入</router-link>
     </div>
-    <div class="categories-wrapper">
-
-      <router-link :to="{ path: '/categories' }">分类</router-link>
+    <div class="categories-wrapper" v-show="activeTab == 'categories'">
+      <div class="content"></div>
+      <router-link :to="{ path: '/categories' }">>>点击进入</router-link>
     </div>
-    <div class="achieves-wrapper">
-
-      <router-link :to="{ path: '/achieves' }">归档</router-link>
+    <div class="achieves-wrapper" v-show="activeTab == 'achieves'">
+      <div class="content"></div>
+      <router-link :to="{ path: '/achieves' }">>>点击进入</router-link>
     </div>
-    <div class="tags-wrapper">
-
-      <router-link :to="{ path: '/tags' }">标签</router-link>
+    <div class="tags-wrapper" v-show="activeTab == 'tags'">
+      <div class="content"></div>
+      <router-link :to="{ path: '/tags' }">>>点击进入</router-link>
     </div>
     <div class="tab-wrapper">
       <span :class="[activeTab == 'articles' ? 'active' : '']" @click="transformTo('articles')">文章</span>
@@ -110,23 +111,68 @@ export default {
   }
   .articles-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 30%;
+    .content {
+        width: 318px;
+        height: 75px;
+        background-image: url('/public/assets/articles.png');
+        background-size: 100% 100%;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      text-align: right;
+    }
   }
   .categories-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    right: 15%;
+    .content {
+        width: 456.3px;
+        height: 96px;
+        background-image: url('/public/assets/categories.png');
+        background-size: 100% 100%;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      text-align: right;
+    }
   }
   .achieves-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 5%;
+    left: 50%;
+    margin-left: -185px;
+    .content {
+        width: 370px;
+        height: 75px;
+        background-image: url('/public/assets/achieves.png');
+        background-size: 100% 100%;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      text-align: right;
+    }
   }
   .tags-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    right: 35%;
+    .content {
+        width: 193.6px;
+        height: 92px;
+        background-image: url('/public/assets/tags.png');
+        background-size: 100% 100%;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      text-align: right;
+    }
   }
 }
 </style>
