@@ -144,7 +144,7 @@ function addShowGeo() {
                                             });
         })(i)
     }
-    var texture = new THREE.TextureLoader().load( "public/imgs/gradient.png" );
+    var texture = new THREE.TextureLoader().load( require("../assets/imgs/gradient.png") );
     var material = new THREE.PointsMaterial({
         size: 1,
         map: texture,
@@ -198,7 +198,7 @@ function addDecorationGeo() {
                                             .start();
         })(i)
     }
-    var texture = new THREE.TextureLoader().load( "public/imgs/gradient.png" );
+    var texture = new THREE.TextureLoader().load( require("../assets/imgs/gradient.png") );
     var material = new THREE.PointsMaterial({
         size: 1,
         map: texture,
@@ -267,7 +267,7 @@ function loadModels(callback) {
     var counter = 0,
         NUM_OF_MODELS = 5;
     var loader = new THREE.JSONLoader();
-    loader.load("public/models/planet.json", function (geo, mat) {
+    loader.load(require("../assets/models/planet.json"), function (geo, mat) {
         mainGeo = geo;
         geos.main = mainGeo;
         if (++counter === NUM_OF_MODELS) {
@@ -275,7 +275,7 @@ function loadModels(callback) {
         }
     });
 
-    loader.load("public/models/storm-trooper.json", function (geo, mat) {
+    loader.load(require("../assets/models/storm-trooper.json"), function (geo, mat) {
         articlesGeo = geo;
         geos.articles = articlesGeo;
         if (++counter === NUM_OF_MODELS) {
@@ -283,7 +283,7 @@ function loadModels(callback) {
         }
     });
 
-    loader.load("public/models/air-craft.json", function (geo, mat) {
+    loader.load(require("../assets/models/air-craft.json"), function (geo, mat) {
         achievesGeo = geo;
         geos.achieves = achievesGeo;
         if (++counter === NUM_OF_MODELS) {
@@ -291,7 +291,7 @@ function loadModels(callback) {
         }
     });
 
-    loader.load("public/models/atom.json", function (geo, mat) {
+    loader.load(require("../assets/models/atom.json"), function (geo, mat) {
         categoriesGeo = geo;
         geos.categories = categoriesGeo;
         if (++counter === NUM_OF_MODELS) {
@@ -299,7 +299,7 @@ function loadModels(callback) {
         }
     });
 
-    loader.load("public/models/iron-man.json", function (geo, mat) {
+    loader.load(require("../assets/models/iron-man.json"), function (geo, mat) {
         tagsGeo = geo;
         geos.tags = tagsGeo;
         if (++counter === NUM_OF_MODELS) {

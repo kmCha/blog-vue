@@ -58,16 +58,24 @@ module.exports = {
         include: projectRoot,
         exclude: /node_modules/
       },
+    //   {
+    //     test: /\.json$/,
+    //     loader: 'json'
+    //   },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'url',
+        query: {
+          limit: 10000,
+          name: utils.assetsPath('models/[name].[hash:7].[ext]')
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url',
         query: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath('imgs/[name].[hash:7].[ext]')
         }
       },
       {
