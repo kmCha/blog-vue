@@ -8,7 +8,7 @@ var composer,
 
 var orbit;
 
-var particles;
+var showObj;
 
 var showGeo,
     mainGeo,
@@ -24,6 +24,41 @@ var geos = {
     categories: null,
     achieves: null,
     tags: null
+};
+
+var offset = {
+    articles: {
+        x: 40,
+        y: 0,
+        z: 30,
+        rotateX: 0,
+        rotateY: -20,
+        rotateZ: 0
+    },
+    categories: {
+        x: -50,
+        y: 0,
+        z: -10,
+        rotateX: 0,
+        rotateY: 15,
+        rotateZ: 0
+    },
+    achieves: {
+        x: 0,
+        y: 0,
+        z: 0,
+        rotateX: 0,
+        rotateY: 0,
+        rotateZ: 0
+    },
+    tags: {
+        x: -50,
+        y: 0,
+        z: -10,
+        rotateX: 0,
+        rotateY: 25,
+        rotateZ: 0
+    }
 };
 
 var animationFrame;
@@ -146,9 +181,9 @@ function addShowGeo() {
         alphaTest: 0.5,
         blending: THREE.AdditiveBlending,
     });
-    var dot = new THREE.Points(showGeo, material);
+    showObj = new THREE.Points(showGeo, material);
 
-    scene.add(dot);
+    scene.add(showObj);
 }
 
 function addDecorationGeo() {
@@ -210,13 +245,32 @@ function transformTo(type) {
         tween,
         geo = geos[type],
         length = geo.vertices.length;
+
+    new TWEEN.Tween({
+        x: showObj.rotation.x,
+        y: showObj.rotation.y,
+        z: showObj.rotation.z
+    })
+    .to({
+        x: (offset[type] ? offset[type].rotateX : 0) / 180 * Math.PI,
+        y: (offset[type] ? offset[type].rotateY : 0) / 180 * Math.PI,
+        z: (offset[type] ? offset[type].rotateZ : 0) / 180 * Math.PI
+    }, DURATION * 1.5)
+    .onUpdate(function() {
+        showObj.rotation.x = this.x;
+        showObj.rotation.y = this.y;
+        showObj.rotation.z = this.z;
+    })
+    .easing(TWEEN.Easing.Exponential.In)
+    .start();
+
     for (var i = 0; i < maxLength; i++) {
         tween = showGeo.vertices[i].tween;
         (function(i, count) {
             tween.to({
-                    x: geo.vertices[count].x,
-                    y: geo.vertices[count].y,
-                    z: geo.vertices[count].z
+                    x: geo.vertices[count].x + (offset[type] ? offset[type].x : 0),
+                    y: geo.vertices[count].y + (offset[type] ? offset[type].y : 0),
+                    z: geo.vertices[count].z + (offset[type] ? offset[type].z : 0)
                 }, DURATION)
                 .delay(DURATION * Math.random())
                 .start();
