@@ -98,14 +98,8 @@ function init(parentSelector) {
         addShowGeo();
         addDecorationGeo();
 
-        setTimeout(function() {
-            becomeMain();
-            playDecoration();
-        }, 1000);
-
-        setTimeout(function() {
-            // becomeArticles();
-        }, 5000);
+        becomeMain();
+        playDecoration();
 
         // add the output of the renderer to the html element
         document.querySelector(parentSelector).appendChild(renderer.domElement);
@@ -247,7 +241,7 @@ function becomeMain() {
                     y: mainGeo.vertices[count].y,
                     z: mainGeo.vertices[count].z
                 }, DURATION)
-                .delay(Math.floor(1000 * Math.random()) + i * DELAY_BETWEEN_RATIO)
+                .delay(Math.floor(1000 * Math.random()) + i * DELAY_BETWEEN_RATIO + 1000)
                 .start();
         }(i, count))
         if (count >= mainLength - 1) {

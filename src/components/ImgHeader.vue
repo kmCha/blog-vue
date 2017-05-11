@@ -76,7 +76,9 @@ export default {
         this.initiated = true
         this.$store.commit('cachePartimation', particle.init('.img-header'))
         setTimeout(() => {
-          this.$store.commit('changeActiveTab', 'main')
+          if (!this.$store.state.activeTab) {
+            this.$store.commit('changeActiveTab', 'main')
+          }
         }, 3500)
       }
     }
@@ -89,7 +91,9 @@ export default {
       if (!this.loading && !this.initiated) {
         this.$store.commit('cachePartimation', particle.init('.img-header'))
         setTimeout(() => {
-          this.$store.commit('changeActiveTab', 'main')
+          if (!this.$store.state.activeTab) {
+            this.$store.commit('changeActiveTab', 'main')
+          }
         }, 3500)
         this.initiated = true
       }
