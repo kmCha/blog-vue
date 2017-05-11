@@ -145,7 +145,6 @@ export default {
       color: #fff;
       cursor: pointer;
       &.active {
-        border: 1px #000 solid;
         color: #000;
         background-color: #fff;
       }
