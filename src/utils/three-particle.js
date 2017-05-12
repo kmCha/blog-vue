@@ -29,7 +29,7 @@ var geos = {
 var offset = {
     articles: {
         x: 40,
-        y: 0,
+        y: 4,
         z: 30,
         rotateX: 0,
         rotateY: -20,
@@ -53,8 +53,8 @@ var offset = {
     },
     tags: {
         x: -50,
-        y: 0,
-        z: -10,
+        y: 4,
+        z: 10,
         rotateX: 0,
         rotateY: 25,
         rotateZ: 0
@@ -261,7 +261,7 @@ function transformTo(type) {
         showObj.rotation.y = this.y;
         showObj.rotation.z = this.z;
     })
-    .easing(TWEEN.Easing.Exponential.In)
+    .easing(TWEEN.Easing.Quartic.InOut)
     .start();
 
     for (var i = 0; i < maxLength; i++) {
