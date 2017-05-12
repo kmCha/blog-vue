@@ -357,8 +357,8 @@ function loadModels(callback) {
 }
 
 function onDocumentMouseMove( event ) {
-	mouseX = ( event.clientX - windowHalfX ) / (1000 / camera.position.z) / 3;
-	mouseY = ( event.clientY - windowHalfY ) / (1000 / camera.position.z) / 3;
+	mouseX = ( event.clientX - windowHalfX ) / (1000 / camera.position.z) / 10;
+	mouseY = ( event.clientY - windowHalfY ) / (1000 / camera.position.z) / 10;
 }
 
 function onWindowResize() {
